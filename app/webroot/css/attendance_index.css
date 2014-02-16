@@ -1,0 +1,14 @@
+@CHARSET "UTF-8";
+#selected {
+	width:100%;
+	margin-right:-250px;
+	float:left;
+}
+#students {
+	padding-right:250px;
+}
+#sidebar {
+	width:200px;
+	float:right;
+	clear:none;
+}

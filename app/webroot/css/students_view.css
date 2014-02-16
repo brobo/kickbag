@@ -1,0 +1,12 @@
+#edit {
+	width:100%;
+	text-align:right;
+	float:right;
+}
+#student_info {
+	display:inline-block;
+}
+
+.highlight-date {
+	background-color: #ffff00;
+}
