@@ -32,7 +32,7 @@
 	<td><?php echo $p['Program']['duration'] . ' months'; ?></td>
 </tr>
 <tr>
-	<th>Price</th>
+	<th>Price per month</th>
 	<td><?php echo sprintf("$%.2f", $p['Program']['price']); ?></td>
 </tr>
 </table>

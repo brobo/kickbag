@@ -16,27 +16,12 @@
 * along with this program; if not, you can find a copy of it at
 * <http://www.gnu.org/licenses/gpl.html>
 *************************************************************************/
-var info; //This is set by the JS buffer.
 
 $(function() {
-	$('#enrollProgramId').change(updateFields);
-	$('#datepicker').datepicker({
-		onSelect:updateDate,
-		minDate:0,
-		dateFormat:'yy-mm-dd'
-	});
-	$('#enrollCharge').click(function() {
-		$('#chargeDiv').toggle(this.checked);
-	});
-});
+	$('#ProgramPrice').change(updateTotal);
+	$('#ProgramDuration').change(updateTotal);
+})
 
-function updateDate() {
-	$('#enrollExpirationDate').val($('#datepicker').val());
-}
-
-function updateFields() {
-	var program = $('#enrollProgramId').val();
-	$('#enrollPrice').val(info[program]['price']*info[program]['duration']);
-	$('#datepicker').datepicker('setDate', '+' + info[program]['duration'] + 'm');
-	updateDate();
+function updateTotal() {
+	$('#total').val($('#ProgramPrice').val() * $('#ProgramDuration').val());
 }

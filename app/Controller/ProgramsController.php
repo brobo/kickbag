@@ -84,7 +84,7 @@ class ProgramsController extends AppController {
 			$this->redirect(array('controller'=>'Programs', 'action'=>'index'));
 		}
 		
-		$program['Program']['active'] = false;
+		$program['Program']['deprecated'] = true;
 		debug($program);
 		foreach ($program['Enrollment'] as $key => $_) {
 			$program['Enrollment'][$key]['active'] = false;

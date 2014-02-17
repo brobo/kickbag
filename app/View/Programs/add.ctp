@@ -16,6 +16,7 @@
 * along with this program; if not, you can find a copy of it at
 * <http://www.gnu.org/licenses/gpl.html>
 ***********************************************************************-->
+<?php echo $this->Html->script(array('programs_add.js')); ?>
 <h2>Add Program</h2>
 <?php
 echo $this->Form->create('Program');
@@ -24,7 +25,15 @@ echo $this->Form->input('duration', array('label'=>'Duration (months)'));
 echo $this->Form->input('price', array(
 		'class'=>'currencyInput',
 		'style'=>'text-align:left',
-		'between' => '<span class="currency">$</span>'
+		'between' => '<span class="currency">$</span>',
+		'label' => 'Price per month'
+));
+echo $this->Form->input('total', array(
+		'class'=>'currencyInput',
+		'style'=>'text-align:left',
+		'between'=>'<span class="currency">$</span>',
+		'readonly' => 'true',
+		'id' => 'total'
 ));
 echo $this->Form->end('Add Program');
 ?>
