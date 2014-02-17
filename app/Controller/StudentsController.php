@@ -36,14 +36,14 @@ class StudentsController extends AppController {
 		$this->set('ranks', $this->Student->buildRankPriority());
 	}
 	
-	public function view($atan = null) {
-		if (!$atan) {
+	public function view($sid = null) {
+		if (!$sid) {
 			throw new NotFoundException(__('Invalid student'));
 		}
 		$this->Student->recursive = 2;
-		$student = $this->Student->findByAtaNumber($atan);
+		$student = $this->Student->findById($sid);
 		if (!$student) {
-			$student = $this->Student->findById($atan);
+			$student = $this->Student->findByAtaNumber($sid);
 			if (!$student) {
 				throw new NotFoundException(__('Student not found'));
 			}
@@ -70,19 +70,19 @@ class StudentsController extends AppController {
 	
 	public function update($atan = null) {
 		if (!$atan) {
-			throw new NotFoundException(_('Invalid student'));
+			throw new NotFoundException(__('Invalid student'));
 		}
 		
-		$s = $this->Student->findByAtaNumber($atan);
+		$s = $this->Student->findById($sid);
 		if (!$s) {
-			throw new NotFoundException(_('Invalid student'));
+			throw new NotFoundException(__('Invalid student'));
 		}
 		
 		if ($this->request->is('post') || $this->request->is('put')) {
 			$this->Student->id = $s['Student']['id'];
 			if ($this->Student->save($this->request->data)) {
 				$this->Session->setFlash('Student updated.', 'flash_success');
-				$this->redirect(array('action' => 'view', $s['Student']['ata_number']));
+				$this->redirect(array('action' => 'view', $s['Student']['id']));
 			} else {
 				$this->Session->setFlash('Failed to update student.');
 			}
@@ -115,14 +115,14 @@ class StudentsController extends AppController {
 		}
 	}
 	
-	public function contacts($atan) {
+	public function contacts($sid) {
 		$this->loadModel('Contact');
-		if (!$atan) {
+		if (!$sid) {
 			throw new NotFoundException(_("Invalid student"));
 		}
-		$student = $this->Student->findByAtaNumber($atan);
+		$student = $this->Student->findById($sid);
 		if (!$student) {
-			throw new NotFoundException(_("Invalid student"));
+			throw new NotFoundException(__("Invalid student"));
 		}
 		$id = $student['Student']['id'];
 		$tbl = $this->Student->tablePrefix . "contacts_students";

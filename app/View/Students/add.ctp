@@ -26,6 +26,6 @@ echo $this->Form->input('dob', array(
 		'minYear' => date('Y') - 100,
 		'maxYear' => date('Y') - 4		
 ));
-echo $this->Form->input('ata_number');
+echo $this->Form->input('ata_number', array('required' => false));
 echo $this->Form->end('Register Student');
 ?>

@@ -24,7 +24,7 @@ class EnrollmentController extends AppController {
 		
 	public function student($sid) {
 		if (!isset($sid)) {
-			throw new BadRequestException(__('Illegal ATA Number'));
+			throw new BadRequestException(__('Illegal student'));
 		}
 		$student = $this->Enrollment->Student->findById($sid);
 		if (!$student) {

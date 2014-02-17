@@ -55,9 +55,7 @@ class Student extends AppModel {
 						'rule' => array('maxLength', 9),
 						'message' => 'Not a valid ATA Number'
 					),
-					'required' => array(
-						'rule' =>	'notEmpty'
-					)
+					'required' => false
 			), 'dob' => array(
 					'rule' => 'notEmpty'
 			)
