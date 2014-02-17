@@ -23,11 +23,12 @@ class TransactionsController extends AppController {
 	public $helpers = array('Form', 'Html');
 	public $components = array('Session');
 	
-	public function index() {
+	public function add() {
 		if (!empty($this->request->data)) {
 			$student = $this->Transaction->Student->findBySearch($this->request->data['Transaction']['student_search']);
 			if (!$student) {
-				throw new InternalErrorException(_('No student was selected.'));
+				$this->Session->setFlash(__('No student was selected.'));
+				return;
 			}
 			$this->request->data['Transaction']['student_id'] = $student['Student']['id'];
 			$transaction = $this->Transaction->save($this->request->data);
@@ -42,6 +43,13 @@ class TransactionsController extends AppController {
 			$this->Session->setFlash('Applied charge', 'flash_success');
 			$this->redirect(array('controller'=>'Students', 'action'=>'view', $student['Student']['ata_number']));
 		}
+	}
+	
+	public function index() {
+		$this->Transaction->recursive=2;
+		$this->set('transactions', $this->Transaction->find('all', array(
+			'conditions' => array('paid' => false)
+		)));
 	}
 	
 	public function mark_paid($tid) {

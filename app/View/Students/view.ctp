@@ -51,14 +51,23 @@
 		<th>Name</th>
 		<th>Phone number</th>
 		<th>Email</th>
+		<th>Address</th>
+		<th>Edit</th>
 	</tr>
 </thead>
 <tbody>
 <?php foreach($s['Contact'] as $c): ?>
 	<tr>
-		<td><?php echo $c['name']; ?></td>
+		<td><?php echo $this->Html->link($c['name'], array('controller'=>'contacts', 'action'=>'view', $c['id'])); ?></td>
 		<td><?php echo $c['phone']; ?></td>
 		<td><?php echo $c['email']; ?></td>
+		<td><?php echo strlen($c['address']) > 25 ? substr($c['address'], 0, 25) . '...' : $c['address']; ?></td>
+		<td>
+			<ul class="dropdown-menu"><li>&#x25BC;<ul>
+			<li><?php echo $this->Html->link('Update', array('controller'=>'contacts', 'action'=>'update', $c['id'])); ?></li>
+			<li><?php echo $this->Html->link('Unlink', array('controller'=>'contacts', 'action'=>'renew', $c['id'])); ?>
+			</ul></li></ul>
+		</td>
 	</tr>
 <?php endforeach;?>
 </tbody>
@@ -98,6 +107,7 @@
 				<td><?php echo '$' . $ti['TransactionItem']['unit_price'] * $ti['TransactionItem']['quantity']; ?></td>
 			</tr>
 		<?php endforeach; ?>
+		<?php if (count($s['TransactionItem'][$t['id']])%2 == 0) echo '<tr></tr>'; ?>
 		</tbody>
 		</table>
 	</td></tr>
@@ -132,3 +142,4 @@
 <?php endforeach; ?>
 </tbody>
 </table>
+<?php echo $this->Html->link('Enroll', array('controller'=>'enrollment', 'action'=>'student', $s['Student']['id'])); ?>

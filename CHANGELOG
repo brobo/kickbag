@@ -1,0 +1,9 @@
+v0.1
+----
+Initial release of Kickbag Martial Arts Manager.
+
+v0.2
+----
+Added address column to Contact table, and additional Contact view flexibility.
+Open transactions now display on the Student index page in place of the "View" link.
+New page for viewing all transactions at once.

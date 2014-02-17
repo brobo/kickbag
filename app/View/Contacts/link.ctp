@@ -37,6 +37,7 @@
 			<td><?php echo $c['Contact']['name']; ?></td>
 			<td><?php echo $c['Contact']['phone']; ?></td>
 			<td><?php echo $c['Contact']['email']; ?></td>
+			<td><?php echo strlen($c['Contact']['address']) > 50 ? substr($c['Contact']['address'], 0, 50) . '...' : $c['Contact']['address']; ?></td>
 			<td><?php echo $this->Html->Link('Link', array('controller'=>'contacts', 'action'=>'link', $sid, $c['Contact']['id'])); ?></td>
 		</tr>
 		<?php endforeach; ?>

@@ -19,9 +19,10 @@
 <h1>Create Contact</h1>
 <?php 
 echo $this->Form->create('Contact');
-echo $this->Form->input('Contact.name');
-echo $this->Form->input('Contact.phone');
-echo $this->Form->input('Contact.email');
+echo $this->Form->input('name');
+echo $this->Form->input('phone');
+echo $this->Form->input('email');
+echo $this->Form->input('address');
 echo $this->Form->input('Student.id', array('type'=>'hidden', 'value' => $sid));
 echo $this->Form->end('Create Contact');
 ?>

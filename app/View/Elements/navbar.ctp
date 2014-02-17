@@ -27,6 +27,11 @@
 					<li><?php echo $this->Html->link('Contacts', array('controller'=>'Contacts', 'action'=>'index')); ?></li>
 			</ul></li>
 			<li><?php echo $this->Html->link('Attendance', array('controller'=>'attendance', 'action'=>'index'));?></li>
-			<li><?php echo $this->Html->link('Transactions', array('controller'=>'transactions', 'action'=>'index'));?></li>
+			<li><?php echo $this->Html->link('Transactions', array('controller'=>'transactions', 'action'=>'index'));?><ul>
+				<li><?php echo $this->Html->link('New', array('controller'=>'Transactions', 'action'=>'add')); ?></li>
+			</ul></li>
+			<?php 
+			if ($this->Session->read('Auth.User')) echo '<li>' . $this->Html->link('Logout', array('controller'=>'users', 'action'=>'logout')) . '</li>';
+			?>
 		</ul>
 </div>

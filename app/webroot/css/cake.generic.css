@@ -767,14 +767,14 @@ important #navbar li {
 }
 
 #navbar .dropdown-menu,
-.dropdown-menu a,
-.dropdown-menu span,
-.dropdown-menu li.dropdown-menu-hover > a,
-.dropdown-menu li:hover,
-.dropdown-menu li.dropdown-menu-hover,
-.dropdown-menu ul,
-.dropdown-menu ul li:hover,
-.dropdown-menu ul li.dropdown-menu-hover {
+#navbar .dropdown-menu a,
+#navbar .dropdown-menu span,
+#navbar .dropdown-menu li.dropdown-menu-hover > a,
+#navbar .dropdown-menu li:hover,
+#navbar .dropdown-menu li.dropdown-menu-hover,
+#navbar .dropdown-menu ul,
+#navbar .dropdown-menu ul li:hover,
+#navbar .dropdown-menu ul li.dropdown-menu-hover {
     background-color:#003d4c;
 }
 

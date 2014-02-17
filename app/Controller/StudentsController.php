@@ -24,7 +24,15 @@ class StudentsController extends AppController {
 	public $components = array('Session');
 	
 	public function index() {
-		$this->set('students', $this->Student->find('all'));
+		$students = $this->Student->find('all');
+		foreach ($students as $id => $student) {
+			$total = 0;
+			foreach ($student['Transaction'] as $transaction) {
+				$total += $transaction['total'];
+			}
+			$students[$id]['Transaction']['total'] = $total;
+		}
+		$this->set('students', $students);
 		$this->set('ranks', $this->Student->buildRankPriority());
 	}
 	

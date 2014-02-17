@@ -90,6 +90,14 @@ class ContactsController extends AppController {
 		}
 	}
 	
+	public function view($id) {
+		$contact = $this->Contact->findById($id);
+		if (!$contact) {
+			throw new NotFoundException(__('Contact not found.'));
+		}
+		$this->set('c', $contact);
+	}
+	
 	public function index() {
 		$this->set('contact', $this->Contact->find('all'));
 	}
@@ -106,7 +114,7 @@ class ContactsController extends AppController {
 	
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Contact->save($this->request->data)) {
-				$this->Contact->setFlash('Contact updated.', 'flash_success');
+				$this->Session->setFlash('Contact updated.', 'flash_success');
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash('Failed to update contact.');

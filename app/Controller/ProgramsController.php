@@ -22,7 +22,7 @@
 class ProgramsController extends AppController {
 	
 	public function index() {
-		$this->set('programs', $this->Program->find('all'));
+		$this->set('programs', $this->Program->find('all', array('conditions' => array('deprecated'=>false))));
 	}
 	
 	public function add() {
@@ -78,19 +78,20 @@ class ProgramsController extends AppController {
 			throw new NotFoundException(__("Illegal program ID"));
 		}
 		
-		$program = $this->Program->$findById($pid);
+		$program = $this->Program->findById($pid);
 		if (!$program) {
 			$this->Session->setFlash(__("Program not found"));
-			$this->redirect(array('controller'=>'Program', 'action'=>'index'));
+			$this->redirect(array('controller'=>'Programs', 'action'=>'index'));
 		}
 		
 		$program['Program']['active'] = false;
-		foreach ($program['ProgramStudent'] as $key => $_) {
-			$program['ProgramStudent'][$key]['active'] = false;
+		debug($program);
+		foreach ($program['Enrollment'] as $key => $_) {
+			$program['Enrollment'][$key]['active'] = false;
 		}
 		if ($this->Program->saveAll($program)) {
 			$this->Session->setFlash(__('Program deprecated'), 'flash_success');
-			$this->redirect(array('controller'=>'Program', action=>'index'));
+			$this->redirect(array('controller'=>'programs', 'action'=>'index'));
 		} else {
 			$this->Session->setFlash(__('An error occured while deprecating the program.'));
 			$this->redirect($this->referer());

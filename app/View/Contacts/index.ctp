@@ -28,6 +28,7 @@
 			<th>Contact</th>
 			<th>Phone</th>
 			<th>Email</th>
+			<th>Address</th>
 			<th>Edit</th>
 		</tr>
 	</thead>
@@ -37,6 +38,7 @@
 			<td><?php echo $c['Contact']['name']; ?></td>
 			<td><?php echo $c['Contact']['phone']; ?></td>
 			<td><?php echo $c['Contact']['email']; ?></td>
+			<td><?php echo strlen($c['Contact']['address']) > 25 ? substr($c['Contact']['address'], 0, 25) . '...' : $c['Contact']['address']; ?></td>
 			<td>
 				<ul class="dropdown-menu"><li>&#x25BC;<ul>
 					<li><?php echo $this->Html->link('Update', array('controller'=>'contacts', 'action'=>'update', $c['Contact']['id'])); ?></li>

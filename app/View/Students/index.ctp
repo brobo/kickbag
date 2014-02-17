@@ -29,8 +29,8 @@
 			<th>Name</th>
 			<th>Rank</th>
 			<th>ATA Number</th>
-			<th>Contact Information</th>
-			<th>Edit</th>
+			<th>Open Transactions</th>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -42,11 +42,11 @@
 				<?php echo $ranks[$s['Student']['rank']]['title']; ?>
 			</td>
 			<td><?php echo $s['Student']['ata_number']; ?></td>
-			<td><?php echo $this->Html->link('View', array('controller'=>'students', 'action'=>'contacts', $s['Student']['ata_number']))?>
+			<td><?php if ($s['Transaction']['total'] > 0) echo sprintf("%d open, total $%.2f", count($s['Transaction'])-1, $s['Transaction']['total']); ?></td>
 			<td>
 				<ul class="dropdown-menu"><li>&#x25BC;<ul>
 					<li><?php echo $this->Html->link('Update', array('controller'=>'students', 'action'=>'update', $s['Student']['ata_number'])); ?></li>
-					<li><?php echo $this->Html->link('Testing', array('controller'=>'TestingStudent', 'action' => 'register_testing', $s['Student']['ata_number'])); ?></li>
+					<li><?php echo $this->Html->link('Contacts', array('controller'=>'students', 'action'=>'contacts', $s['Student']['ata_number'])); ?></li>		
 					<li><?php echo $this->Form->PostLink(
 							'Delete',
 							array('action' => 'delete', $s['Student']['id']),

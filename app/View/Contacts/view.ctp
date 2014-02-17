@@ -16,13 +16,24 @@
 * along with this program; if not, you can find a copy of it at
 * <http://www.gnu.org/licenses/gpl.html>
 ***********************************************************************-->
-<h1>Update Student</h1>
-<?php
-echo $this->Form->create('Contact');
-echo $this->Form->input('name');
-echo $this->Form->input('phone');
-echo $this->Form->input('email');
-echo $this->Form->input('address');
-echo $this->Form->input('Contact.id', array('type'=>'hidden', 'value'=>$id));
-echo $this->Form->end('Save Contact');
-?>
+<h2><?php echo 'Contact information for ' . $c['Contact']['name']; ?></h2>
+<?php echo $this->Html->link('Back', array('controller'=>'contacts', 'action'=>'index')); ?> 
+<?php echo $this->Html->link('Update', array('controller'=>'contacts', 'action'=>'update', $c['Contact']['id'])); ?>
+<table>
+<tr>
+	<th>Name</th>
+	<td><?php echo $c['Contact']['name']; ?></td>
+</tr>
+<tr>
+	<th>Phone Number</th>
+	<td><?php echo $c['Contact']['phone']; ?></td>
+</tr>
+<tr>
+	<th>Email Address</th>
+	<td><?php echo $c['Contact']['email']; ?></td>
+</tr>
+<tr>
+	<th>Address</th>
+	<td><?php echo $c['Contact']['address']; ?>
+</tr>
+</table>

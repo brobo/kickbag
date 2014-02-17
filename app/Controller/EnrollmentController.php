@@ -22,13 +22,14 @@
 class EnrollmentController extends AppController {
 	public $uses = array('Enrollment', 'Transaction');
 		
-	public function student($atan) {
-		if (!isset($atan)) {
+	public function student($sid) {
+		if (!isset($sid)) {
 			throw new BadRequestException(__('Illegal ATA Number'));
 		}
-		$student = $this->Enrollment->Student->findByAtaNumber($atan);
+		$student = $this->Enrollment->Student->findById($sid);
 		if (!$student) {
-			throw new NotFoundException(__('Student not found.'));
+			$this->Session->setFlash(__('Student not found.'));
+			$this->redirect(array('controller'=>'students', 'action'=>'index'));
 		}
 		if ($this->request->isPost()) {
 			$data = $this->request->data;
