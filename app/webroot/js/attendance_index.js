@@ -17,6 +17,7 @@
 * <http://www.gnu.org/licenses/gpl.html>
 *************************************************************************/
 var rowCount = 0;
+var KB_ENTER = 13;
 
 function addRow(studentName, atan) {
 	var row = '<tr onClick="remove()">\
@@ -27,19 +28,25 @@ function addRow(studentName, atan) {
 	rowCount++;
 }
 
-$(function() {
-	$('#atanumber').on('input', function() {
-		var self = $(this);
-		if (self.val().match(/^[0-9]{9}$/)) {
-			$.post("attendance/searchAtanumber", {atan: $(this).val()}, function(data) {
-				result = $.parseJSON(data);
-				if (!$.isEmptyObject(result)) {
-					addRow(result.name, result.ata_number);
-					self.val("");
-				}
-			});
+function onFinishedTyping() {
+	var input = $('#search');
+	//alert('$' + input.val() + '^');
+	//alert(input.val());
+	$.post("attendance/search", {search: input.val()}, function(data) {
+		result = $.parseJSON(data);
+		if (!$.isEmptyObject(result)) {
+			addRow(result.name, result.ata_number);
+			input.val("");
 		}
-	}).focus();
+	});
+}
+
+$(function() {
+	$('#search').on('paste', function() {setTimeout(onFinishedTyping, 1);});
+	$('#search').on('keypress', function(e) {
+		if (e.which == KB_ENTER) onFinishedTyping();
+	});
+	$('#search').focus();
 	$('#datepicker').datepicker({
 		altField:'#date',
 		dateFormat:'yy-mm-dd'

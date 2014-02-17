@@ -20,7 +20,7 @@
 <?php echo $this->Html->script(array('jquery/plugins/ui.js', 'attendance_index.js')); ?>
 <h2>Attendance</h2>
 <h1>Enter a student's ATA number to mark them as present.</h1>
-<input type="text" id="atanumber">
+<input type="text" id="search">
 <?php echo $this->Form->create('students'); ?>
 <div id="studentSelector">
 	<div id="selected">

@@ -52,22 +52,27 @@ class AttendanceController extends AppController {
 	
 	public function report() {}
 	
-	public function searchAtanumber() {
+	public function search() {
 		if (!$this->request->is('Ajax')) {
 			$this->redirect(array('action'=>'index'));
 		}
 		$this->autoRender = false;
 		$this->layout = 'ajax';
 	
-		if (!$this->request->isPost() || !($atan = $this->request->data['atan'])) {
-			echo json_encode(array($atan));
+		if (!$this->request->isPost() || !($search = $this->request->data['search'])) {
+			echo json_encode(array($search));
 		} else {
-			$student = $this->Attendance->Student->findByAtaNumber($atan);
+			$student = $this->Attendance->Student->findByAtaNumber($search);
 			if (!$student) {
-				echo json_encode(array());
-			} else {
-				echo json_encode(array('name'=>$student['Student']['name'], 'ata_number'=>$student['Student']['ata_number']));
+				$student = $this->Attendance->Student->find('first', array(
+					'conditions' => array('concat(first_name, " ", last_name) LIKE' => '%' . $search . '%')
+				));
+				if (!$student) {
+					echo json_encode('err');
+					return;
+				}
 			}
+			echo json_encode(array('name'=>$student['Student']['name'], 'ata_number'=>$student['Student']['ata_number']));
 		}
 	}
 	
