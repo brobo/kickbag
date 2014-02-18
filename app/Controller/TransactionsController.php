@@ -41,7 +41,7 @@ class TransactionsController extends AppController {
 				throw new InternalErrorException(_('Unable to create Transaction.'));
 			}
 			$this->Session->setFlash('Applied charge', 'flash_success');
-			$this->redirect(array('controller'=>'Students', 'action'=>'view', $student['Student']['ata_number']));
+			$this->redirect(array('controller'=>'Students', 'action'=>'view', $student['Student']['id']));
 		}
 	}
 	

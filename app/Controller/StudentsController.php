@@ -68,8 +68,8 @@ class StudentsController extends AppController {
 		}
 	}
 	
-	public function update($atan = null) {
-		if (!$atan) {
+	public function update($sid = null) {
+		if (!$sid) {
 			throw new NotFoundException(__('Invalid student'));
 		}
 		

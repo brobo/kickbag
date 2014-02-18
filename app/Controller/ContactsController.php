@@ -36,7 +36,7 @@ class ContactsController extends AppController {
 			$this->Contact->create();
 			if ($this->Contact->save($this->request->data)) {
 				$this->Session->setFlash('Contact created', 'flash_success');
-				$this->redirect(array('controller' => 'Students', 'action' => 'contacts', $s['Student']['ata_number']));
+				$this->redirect(array('controller' => 'Students', 'action' => 'contacts', $s['Student']['id']));
 			} else {
 				$this->Session->setFlash('Unable to create Contact');
 			}
@@ -72,7 +72,7 @@ class ContactsController extends AppController {
 					));
 			if ($this->Contact->saveAll($rel)) {
 				$this->Session->setFlash("Contact linked.", 'flash_success');
-				$this->redirect(array('controller' => 'Students', 'action' => 'view', $student['Student']['ata_number']));
+				$this->redirect(array('controller' => 'Students', 'action' => 'view', $student['Student']['id']));
 			} else {
 				$this->Session->setFlash("Failed to link.");
 			}

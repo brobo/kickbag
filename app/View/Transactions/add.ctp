@@ -23,7 +23,7 @@
 			position: {at:'left bottom+20'},
 			autoFocus: true
 		});"); ?>
-<h1>New Transaction</h1>
+<h2>New Transaction</h2>
 <?php echo $this->Form->create('Transaction'); ?>
 <table id="items">
 <thead>

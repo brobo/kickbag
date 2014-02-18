@@ -72,7 +72,7 @@ class EnrollmentController extends AppController {
 				}
 			}
 			$this->Session->setFlash(__('Successfully enrolled student in program.'), 'flash_success');
-			$this->redirect(array('controller'=>'students', 'action'=>'view', $student['Student']['ata_number']));
+			$this->redirect(array('controller'=>'students', 'action'=>'view', $student['Student']['id']));
 		}
 		$this->set('student', $student);
 		$this->set('programs', $this->Enrollment->Program->find('all'));

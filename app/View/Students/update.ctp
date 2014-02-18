@@ -24,6 +24,7 @@ echo $this->Form->input('last_name');
 echo $this->Form->input('dob');
 echo $this->Form->input('rank', array('options' => $ranks, 'type' => 'select', 'value' => 'W'));
 echo $this->Form->input('ata_number');
+echo $this->Form->input('notes', array('type'=>'textarea'));
 echo $this->Form->input('Student.id', array('type'=>'hidden', 'value'=>$this->request->data['Student']['id']));
 echo $this->Form->end('Save Student');
 ?>

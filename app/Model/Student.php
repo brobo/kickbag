@@ -45,17 +45,16 @@ class Student extends AppModel {
 			), 'ata_number' => array(
 					'numeric' => array(
 						'rule' => 'numeric',
-						'message' => 'Numeric characters only'
-					),
-					'minlength' => array(
-						'rule' => array('minLength', 9),
-						'message' => 'Not a valid ATA Number'
+						'message' => 'Numeric characters only',
+						'required' => false,
+						'allowEmpty' => true
 					),
 					'maxLength' => array(
 						'rule' => array('maxLength', 9),
 						'message' => 'Not a valid ATA Number'
 					),
-					'required' => false
+					'required' => false,
+					'allowEmpty' => true
 			), 'dob' => array(
 					'rule' => 'notEmpty'
 			)
@@ -88,6 +87,8 @@ class Student extends AppModel {
 			'Bl+' => 'Blue +',
 			'Br' => 'Brown',
 			'Br+' => 'Brown +',
+			'R' => 'Red',
+			'R+' => 'Red +',
 			'RB' => 'Red-Black',
 			'B' => '1° Degree',
 			'2B' => '2° Degree',

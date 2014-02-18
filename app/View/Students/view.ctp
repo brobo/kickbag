@@ -40,6 +40,10 @@
 	<th>DOB</th>
 	<td><?php echo date('F jS Y', strtotime($s['Student']['dob'])); ?>
 </tr>
+<tr>
+	<th>Notes</th>
+	<td><?php echo $s['Student']['notes']; ?></td>
+</tr>
 </table>
 <br>
 <h3 class="blockhead">Contact Information</h3>
