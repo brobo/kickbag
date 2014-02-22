@@ -1,4 +1,5 @@
 var KB_ENTER = 13;
+var clear = false;
 
 $(function() {
 	$('#student_table').dataTable( {
@@ -10,9 +11,16 @@ $(function() {
 	
 	$('#scan_space').on('paste', function() {setTimeout(onFinishedTyping, 1);});
 	$('#scan_space').on('keypress', function(e) {setTimeout(function() {
+		if (clear) {
+			$('#scan_space').val('');
+			clear = false;
+			$('#scan_space').val(String.fromCharCode(e.which));
+		}
 		if (e.which == KB_ENTER) onFinishedTyping();
 		else $('#BarcodeCode').val($('#scan_space').val());
 	});})
+	$('#scan_space').click(function() { $('#scan_space').val(''); });
+	$('#scan_space').focus();
 })
 
 function onFinishedTyping() {
@@ -28,5 +36,6 @@ function onFinishedTyping() {
 			$('#student_select').show();
 		}
 	});
+	clear = true;
 }
 

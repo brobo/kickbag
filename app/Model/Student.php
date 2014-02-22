@@ -30,7 +30,8 @@ class Student extends AppModel {
 		'Enrollment' => array(
 			'conditions' => array('Enrollment.active'=> true)
 		),
-		'Attendance'
+		'Attendance',
+		'Barcode'
 	);
 	public $virtualFields = array(
 		'name' => 'CONCAT(Student.first_name, " ", Student.last_name)'

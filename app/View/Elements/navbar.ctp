@@ -27,6 +27,7 @@
 					<li><?php echo $this->Html->link('Contacts', array('controller'=>'Contacts', 'action'=>'index')); ?></li>
 			</ul></li>
 			<li><?php echo $this->Html->link('Attendance', array('controller'=>'attendance', 'action'=>'index'));?><ul>
+				<li><?php echo $this->Html->link('Report', array('controller'=>'attendance', 'action'=>'report'));?></li>
 				<li><?php echo $this->Html->link('Barcodes', array('controller'=>'barcodes', 'action'=>'index')); ?></li>
 			</ul></li>
 			<li><?php echo $this->Html->link('Transactions', array('controller'=>'transactions', 'action'=>'index'));?><ul>

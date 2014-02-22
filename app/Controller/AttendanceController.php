@@ -62,14 +62,17 @@ class AttendanceController extends AppController {
 		if (!$this->request->isPost() || !($search = $this->request->data['search'])) {
 			echo json_encode(array($search));
 		} else {
-			$student = $this->Attendance->Student->findByAtaNumber($search);
+			$student = $this->Attendance->Student->Barcode->findByValue($search);
 			if (!$student) {
-				$student = $this->Attendance->Student->find('first', array(
-					'conditions' => array('concat(first_name, " ", last_name) LIKE' => '%' . $search . '%')
-				));
+				$student = $this->Attendance->Student->findByAtaNumber($search);
 				if (!$student) {
-					echo json_encode('err');
-					return;
+					$student = $this->Attendance->Student->find('first', array(
+						'conditions' => array('concat(first_name, " ", last_name) LIKE' => '%' . $search . '%')
+					));
+					if (!$student) {
+						echo json_encode('err');
+						return;
+					}
 				}
 			}
 			echo json_encode(array('name'=>$student['Student']['name'], 'ata_number'=>$student['Student']['ata_number']));
