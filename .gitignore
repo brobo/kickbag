@@ -5,4 +5,7 @@ app/tmp/*
 app/[Cc]onfig/core.php
 app/[Cc]onfig/database.php
 *.htaccess
+.settings/*
+.project
+.buildpath
 !empty
