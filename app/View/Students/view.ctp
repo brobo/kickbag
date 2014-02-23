@@ -22,29 +22,39 @@
 <?php echo $this->Html->link('Back', array('controller'=>'students', 'action'=>'index')); ?> 
 <?php echo $this->Html->link('Update', array('controller'=>'students', 'action'=>'update', $s['Student']['ata_number']), array('id'=>'update')); ?>
 <input type="hidden" id="student_id" value="<?php echo $s['Student']['id'];?>">
-<h3>Student Information</h3>
-<table id="student_info">
-<tr>
-	<th>Name</th>
-	<td><?php echo $s['Student']['name']; ?></td>
-</tr>
-<tr>
-	<th>ATA Number</th>
-	<td><?php echo $s['Student']['ata_number']; ?></td>
-</tr>
-<tr>
-	<th>Rank</th>
-	<td><?php echo $ranks[$s['Student']['rank']]; ?></td>
-</tr>
-<tr>
-	<th>DOB</th>
-	<td><?php echo date('F jS Y', strtotime($s['Student']['dob'])); ?>
-</tr>
-<tr>
-	<th>Notes</th>
-	<td><?php echo $s['Student']['notes']; ?></td>
-</tr>
-</table>
+<div id='profile'>
+	<div id="picture">
+		<?php
+			$url = $s['Student']['picture'] ? 'students/' . $s['Student']['picture'] : 'students/nopicture.png';
+			echo $this->Html->image($url);
+			echo $this->Html->link('Update', array('controller'=>'students', 'action'=>'picture', $s['Student']['id'])) . "\t";
+			echo $this->Html->link('Remove', array('controller'=>'students', 'action'=>'picture', $s['Student']['id'], true));
+		?>
+	</div>
+	<h3>Student Information</h3>
+	<table id="student_info">
+	<tr>
+		<th>Name</th>
+		<td><?php echo $s['Student']['name']; ?></td>
+	</tr>
+	<tr>
+		<th>ATA Number</th>
+		<td><?php echo $s['Student']['ata_number']; ?></td>
+	</tr>
+	<tr>
+		<th>Rank</th>
+		<td><?php echo $ranks[$s['Student']['rank']]; ?></td>
+	</tr>
+	<tr>
+		<th>DOB</th>
+		<td><?php echo date('F jS Y', strtotime($s['Student']['dob'])); ?>
+	</tr>
+	<tr>
+		<th>Notes</th>
+		<td><?php echo $s['Student']['notes']; ?></td>
+	</tr>
+	</table>
+</div>
 <br>
 <h3 class="blockhead">Contact Information</h3>
 <h1>(<?php echo $this->Html->link('Add', array('controller'=>'contacts', 'action'=>'add', $s['Student']['id'])); ?>

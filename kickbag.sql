@@ -1,33 +1,20 @@
-/**********************************************************************
-* This file is a part of the Kickbag martial arts manager.
-* Copyright © 2014 Colby Brown
-*
-* This program is free software; you can redistribute it and/or modify it
-* under the terms of the GNU General Public License as published by the
-* Free Software Foundation; either version 3 of the License,
-* or (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful, but
-* WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program; if not, you can find a copy of it at
-* <http://www.gnu.org/licenses/gpl.html>
-***********************************************************************/
-
 -- phpMyAdmin SQL Dump
 -- version 4.0.9
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 17, 2014 at 03:07 PM
+-- Generation Time: Feb 23, 2014 at 11:55 PM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
 CREATE TABLE IF NOT EXISTS `kickbag_attendances` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -37,6 +24,21 @@ CREATE TABLE IF NOT EXISTS `kickbag_attendances` (
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kickbag_barcodes`
+--
+
+CREATE TABLE IF NOT EXISTS `kickbag_barcodes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `value` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `created` date NOT NULL,
+  `modified` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 -- --------------------------------------------------------
 
@@ -89,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `kickbag_enrollments` (
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
 
 --
 -- Triggers `kickbag_enrollments`
@@ -108,6 +110,42 @@ SET NEW.unenrolled = NOW();
 END IF
 //
 DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kickbag_judges`
+--
+
+CREATE TABLE IF NOT EXISTS `kickbag_judges` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ata_number` varchar(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `rank` varchar(5) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `ata_number` (`ata_number`),
+  KEY `student_id` (`student_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kickbag_panel_seats`
+--
+
+CREATE TABLE IF NOT EXISTS `kickbag_panel_seats` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `judge_id` int(10) unsigned NOT NULL,
+  `testing_id` int(10) unsigned NOT NULL,
+  `rank` varchar(50) NOT NULL,
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `judge_id` (`judge_id`,`testing_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 -- --------------------------------------------------------
 
@@ -139,6 +177,8 @@ CREATE TABLE IF NOT EXISTS `kickbag_students` (
   `dob` date NOT NULL,
   `rank` varchar(5) NOT NULL DEFAULT 'W',
   `ata_number` varchar(10) DEFAULT NULL,
+  `notes` text NOT NULL,
+  `picture` varchar(50) DEFAULT 'nopicture.png',
   `search` varchar(100) NOT NULL,
   `modified` datetime DEFAULT NULL,
   `created` datetime DEFAULT NULL,
@@ -174,6 +214,41 @@ CREATE TABLE IF NOT EXISTS `kickbag_students_position` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `kickbag_testings`
+--
+
+CREATE TABLE IF NOT EXISTS `kickbag_testings` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `password` varchar(50) NOT NULL,
+  `time` datetime NOT NULL,
+  `description` varchar(50) NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT '0',
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kickbag_testing_students`
+--
+
+CREATE TABLE IF NOT EXISTS `kickbag_testing_students` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ata_number` varchar(10) NOT NULL,
+  `first_name` varchar(16) NOT NULL,
+  `last_name` varchar(16) NOT NULL,
+  `rank` varchar(5) NOT NULL,
+  `testing_id` int(11) NOT NULL,
+  `modified` datetime NOT NULL,
+  `created` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `kickbag_transactions`
 --
 
@@ -187,7 +262,7 @@ CREATE TABLE IF NOT EXISTS `kickbag_transactions` (
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `student_id` (`student_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
 
 -- --------------------------------------------------------
 
@@ -205,7 +280,7 @@ CREATE TABLE IF NOT EXISTS `kickbag_transaction_items` (
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `transaction_id` (`transaction_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
 
 -- --------------------------------------------------------
 
