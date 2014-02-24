@@ -10,3 +10,19 @@
 .highlight-date {
 	background-color: #ffff00;
 }
+
+#profile {
+	position:relative;
+	width:100%;
+}
+
+#student_info {
+	width:25%;
+}
+
+#picture {
+	float:right;
+	width:200px;
+	height:300px;
+	margin-top:-30px;
+}

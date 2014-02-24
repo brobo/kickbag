@@ -154,5 +154,39 @@ class StudentsController extends AppController {
 		echo json_encode($res);
 		exit;
 	}
+	
+	public function picture($sid, $remove = false) {
+		$this->Student->recursive = 0;
+		$student = $this->Student->findById($sid);
+		if (!$student) {
+			$this->Session->setFlash('Student does not exist');
+			$this->redirect(array('controller'=>'students', 'action'=>'inedx'));
+		}
+		$this->Student->id = $sid;
+		if ($remove) {
+			unlink(WWW_ROOT . 'img/students/' . $student['Student']['picture']);
+			if ($this->Student->saveField('picture', null)) {
+				$this->Session->setFlash('Successfully removed picture', 'flash_success');
+			} else {
+				$this->Session->setFlash('Failed to remove picture');
+			}
+			$this->redirect(array('controller'=>'students', 'action'=>'view', $student['Student']['id']));
+		}
+		if ($this->request->isPost()) {
+			$image = base64_decode($this->request->data['picture']['picture_data']);
+			$url = uniqid('student_id') . '.png';
+			if (file_put_contents(WWW_ROOT . 'img/students/' . $url, $image)) {
+				if ($this->Student->saveField('picture', $url)) {
+					$this->Session->setFlash('Successfully added image', 'flash_success');
+					$this->redirect(array('controller'=>'students', 'action'=>'view', $student['Student']['id']));
+				} else {
+					$this->Session->setFlash('Unable to save image');
+				}
+			} else {
+				$this->Session->setFlash('Failed to upload image.');
+			}
+		}
+		$this->set('student', $student['Student']);
+	}
 }
 ?>

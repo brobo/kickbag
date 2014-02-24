@@ -8,4 +8,6 @@ app/[Cc]onfig/database.php
 .settings/*
 .project
 .buildpath
+app/webroot/img/students/*
+!app/webroot/img/students/nopicture.png
 !empty
