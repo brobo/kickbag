@@ -30,8 +30,8 @@ class AttendanceController extends AppController {
 			$students = $this->request->data['Students'];
 			$failed = array();
 			
-			foreach ($students as $atan) {
-				$student = $this->Attendance->Student->findByAtaNumber($atan['ata_number']);
+			foreach ($students as $s) {
+				$student = $this->Attendance->Student->findById($s['id']);
 				if (!$student) {
 					$failed[$student] = 'Student not found';
 					continue;
@@ -75,7 +75,7 @@ class AttendanceController extends AppController {
 					}
 				}
 			}
-			echo json_encode(array('name'=>$student['Student']['name'], 'ata_number'=>$student['Student']['ata_number']));
+			echo json_encode(array('name'=>$student['Student']['name'], 'id'=>$student['Student']['id']));
 		}
 	}
 	

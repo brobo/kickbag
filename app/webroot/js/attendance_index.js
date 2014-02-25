@@ -19,10 +19,10 @@
 var rowCount = 0;
 var KB_ENTER = 13;
 
-function addRow(studentName, atan) {
+function addRow(studentName, id) {
 	var row = '<tr onClick="remove()">\
 		<td>' + studentName + '</td>\
-		<td>' + atan + '<input name="data[Students][?][ata_number]" type="hidden" value="' + atan + '"></td>\
+		<td><input name="data[Students][?][id]" type="hidden" value="' + id + '"></td>\
 	</tr>';
 	$('#students > tbody:last').after(row.replace(/\?/g, rowCount));
 	rowCount++;
@@ -35,7 +35,7 @@ function onFinishedTyping() {
 	$.post("attendance/search", {search: input.val()}, function(data) {
 		result = $.parseJSON(data);
 		if (!$.isEmptyObject(result)) {
-			addRow(result.name, result.ata_number);
+			addRow(result.name, result.id);
 			input.val("");
 		}
 	});
