@@ -23,7 +23,7 @@ echo $this->Form->input('first_name');
 echo $this->Form->input('last_name');
 echo $this->Form->input('dob', array(
 		'dateFormat' => 'MDY',
-		'minYear' => date('Y') - 100,
+		'minYear' => date('Y') - 60,
 		'maxYear' => date('Y') - 4		
 ));
 echo $this->Form->input('ata_number', array('required' => false));

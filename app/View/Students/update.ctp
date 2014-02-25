@@ -21,7 +21,11 @@
 echo $this->Form->create('Student');
 echo $this->Form->input('first_name');
 echo $this->Form->input('last_name');
-echo $this->Form->input('dob');
+echo $this->Form->input('dob', array(
+		'dateFormat' => 'MDY',
+		'minYear' => date('Y') - 60,
+		'maxYear' => date('Y') - 4
+));
 echo $this->Form->input('rank', array('options' => $ranks, 'type' => 'select', 'value' => 'W'));
 echo $this->Form->input('ata_number');
 echo $this->Form->input('notes', array('type'=>'textarea'));
