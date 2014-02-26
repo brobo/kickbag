@@ -75,7 +75,9 @@ class AttendanceController extends AppController {
 					}
 				}
 			}
-			echo json_encode(array('name'=>$student['Student']['name'], 'id'=>$student['Student']['id']));
+			$atan = $student['Student']['ata_number'];
+			if (!$atan) $atan = '';
+			echo json_encode(array('name'=>$student['Student']['name'], 'id'=>$student['Student']['id'], 'ata_number'=>$student['Student']['ata_number']));
 		}
 	}
 	
