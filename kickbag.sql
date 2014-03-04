@@ -3,18 +3,16 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 23, 2014 at 11:55 PM
+-- Generation Time: Mar 04, 2014 at 03:20 AM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+--
+-- Table structure for table `kickbag_attendances`
+--
 
 CREATE TABLE IF NOT EXISTS `kickbag_attendances` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -114,38 +112,18 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kickbag_judges`
+-- Table structure for table `kickbag_hours`
 --
 
-CREATE TABLE IF NOT EXISTS `kickbag_judges` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `ata_number` varchar(11) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `rank` varchar(5) NOT NULL,
+CREATE TABLE IF NOT EXISTS `kickbag_hours` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `student_id` int(11) NOT NULL,
-  `created` datetime DEFAULT NULL,
-  `modified` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `ata_number` (`ata_number`),
-  KEY `student_id` (`student_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `kickbag_panel_seats`
---
-
-CREATE TABLE IF NOT EXISTS `kickbag_panel_seats` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `judge_id` int(10) unsigned NOT NULL,
-  `testing_id` int(10) unsigned NOT NULL,
-  `rank` varchar(50) NOT NULL,
-  `created` datetime DEFAULT NULL,
-  `modified` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `judge_id` (`judge_id`,`testing_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+  `date` date NOT NULL,
+  `hours` int(11) NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 -- --------------------------------------------------------
 
@@ -167,6 +145,21 @@ CREATE TABLE IF NOT EXISTS `kickbag_programs` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `kickbag_ranks`
+--
+
+CREATE TABLE IF NOT EXISTS `kickbag_ranks` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `value` varchar(31) NOT NULL,
+  `zindex` int(11) NOT NULL DEFAULT '99',
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `kickbag_students`
 --
 
@@ -175,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `kickbag_students` (
   `first_name` varchar(16) NOT NULL,
   `last_name` varchar(16) NOT NULL,
   `dob` date NOT NULL,
-  `rank` varchar(5) NOT NULL DEFAULT 'W',
+  `rank_id` int(11) NOT NULL,
   `ata_number` varchar(10) DEFAULT NULL,
   `notes` text NOT NULL,
   `picture` varchar(50) DEFAULT 'nopicture.png',
@@ -185,7 +178,7 @@ CREATE TABLE IF NOT EXISTS `kickbag_students` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   KEY `id_2` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Triggers `kickbag_students`
@@ -197,56 +190,7 @@ CREATE TRIGGER `create_search` BEFORE INSERT ON `kickbag_students`
 //
 DELIMITER ;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `kickbag_students_position`
---
-
-CREATE TABLE IF NOT EXISTS `kickbag_students_position` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `student_id` int(11) NOT NULL,
-  `row` int(11) NOT NULL,
-  `column` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='This is a temporary table intended to be truncated after each testing.' AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `kickbag_testings`
---
-
-CREATE TABLE IF NOT EXISTS `kickbag_testings` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `password` varchar(50) NOT NULL,
-  `time` datetime NOT NULL,
-  `description` varchar(50) NOT NULL,
-  `active` tinyint(1) NOT NULL DEFAULT '0',
-  `created` datetime DEFAULT NULL,
-  `modified` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `kickbag_testing_students`
---
-
-CREATE TABLE IF NOT EXISTS `kickbag_testing_students` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `ata_number` varchar(10) NOT NULL,
-  `first_name` varchar(16) NOT NULL,
-  `last_name` varchar(16) NOT NULL,
-  `rank` varchar(5) NOT NULL,
-  `testing_id` int(11) NOT NULL,
-  `modified` datetime NOT NULL,
-  `created` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
-
--- --------------------------------------------------------
+-- -------------------------------------------------------
 
 --
 -- Table structure for table `kickbag_transactions`

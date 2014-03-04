@@ -33,6 +33,9 @@ class Student extends AppModel {
 		'Attendance',
 		'Barcode'
 	);
+	public $belongsTo = array(
+		'Rank'
+	);
 	public $virtualFields = array(
 		'name' => 'CONCAT(Student.first_name, " ", Student.last_name)'
 	);
@@ -53,9 +56,7 @@ class Student extends AppModel {
 					'maxLength' => array(
 						'rule' => array('maxLength', 9),
 						'message' => 'Not a valid ATA Number'
-					),
-					'required' => false,
-					'allowEmpty' => true
+					)
 			), 'dob' => array(
 					'rule' => 'notEmpty'
 			)
@@ -71,52 +72,18 @@ class Student extends AppModel {
 			)
 	);
 	
-	public $ranks = array(
-			'W' => 'White',
-			'W+' => 'White +',
-			'O' => 'Orange',
-			'O+' => 'Orange +',
-			'Y' => 'Yellow',
-			'Y+' => 'Yellow +',
-			'Ca' => 'Camo',
-			'Ca+' => 'Camo +',
-			'G' => 'Green',
-			'G+' => 'Green +',
-			'P' => 'Purple',
-			'P+' => 'Purple +',
-			'Bl' => 'Blue',
-			'Bl+' => 'Blue +',
-			'Br' => 'Brown',
-			'Br+' => 'Brown +',
-			'R' => 'Red',
-			'R+' => 'Red +',
-			'RB' => 'Red-Black',
-			'B' => '1° Degree',
-			'2B' => '2° Degree',
-			'2B+' => '2° Degree +',
-			'3B' => '3° Degree',
-			'4B' => '4° Degree',
-			'5B' => '5° Degree',
-			'6B+' => '6° Degree (+)');
-	
-
-
-	public function sortableRank($rank) {
-		$i = 0;
-		foreach ($this->ranks as $key => $value) {
-			if ($key==$rank || $value==$rank) return $i;
-			$i++;
+	public function beforeFind($query = array()) {
+		if (!parent::beforeFind($query)) {
+			return false;
 		}
-		return $i;
-	}
-	
-	public function buildRankPriority() {
-		$res = array();
-		$i = 0;
-		foreach ($this->ranks as $key => $value) {
-			$res[$key] = array('title'=>$value, 'priority'=>sprintf("%02d",$i++));
-		}
-		return $res;
+		
+		$ranks = ClassRegistry::init('Rank');
+		
+		$this->virtualFields = array_merge($this->virtualFields, array(
+				'rank' => sprintf('(SELECT value FROM %sranks WHERE id = Student.rank_id)', $ranks->tablePrefix)	
+		));
+
+		return true;
 	}
 }
 ?>

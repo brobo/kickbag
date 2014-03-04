@@ -33,7 +33,15 @@ class StudentsController extends AppController {
 			$students[$id]['Transaction']['total'] = $total;
 		}
 		$this->set('students', $students);
-		$this->set('ranks', $this->Student->buildRankPriority());
+		
+		$ranksModel = ClassRegistry::init('Rank');
+		$ranks = $ranksModel->find('all');
+		$rank_z = array();
+		foreach ($ranks as $rank) {
+			$rank_z[$rank['Rank']['id']] = $rank['Rank']['zindex'];
+		}
+		
+		$this->set('rank_z', $rank_z);
 	}
 	
 	public function view($sid = null) {
@@ -88,9 +96,18 @@ class StudentsController extends AppController {
 			}
 		}
 		
+		$rankModel = ClassRegistry::init('Rank');
+		$rankRows = $rankModel->find('all', array(
+			'fields' => array('id', 'value')
+		));
+		$ranks = array();
+		foreach ($rankRows as $rank) {
+			$ranks[$rank['Rank']['id']] = str_replace('&deg', ' degree', $rank['Rank']['value']);
+		}
+		
 		if (!$this->data) {
 			$this->data = $s;
-			$this->set('ranks', $this->Student->ranks);
+			$this->set('ranks', $ranks);
 		}
 	}
 	

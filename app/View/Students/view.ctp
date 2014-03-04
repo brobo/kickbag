@@ -43,7 +43,7 @@
 	</tr>
 	<tr>
 		<th>Rank</th>
-		<td><?php echo $ranks[$s['Student']['rank']]; ?></td>
+		<td><?php echo $s['Student']['rank']; ?></td>
 	</tr>
 	<tr>
 		<th>DOB</th>
