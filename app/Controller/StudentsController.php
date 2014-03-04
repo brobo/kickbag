@@ -73,6 +73,16 @@ class StudentsController extends AppController {
 			} else {
 				$this->Session->setFlash('Unable to register student.');
 			}
+		} else {
+			$rankModel = ClassRegistry::init('Rank');
+			$rankRows = $rankModel->find('all', array(
+					'fields' => array('id', 'value')
+			));
+			$ranks = array();
+			foreach ($rankRows as $rank) {
+				$ranks[$rank['Rank']['id']] = str_replace('&deg', ' degree', $rank['Rank']['value']);
+			}
+			$this->set('ranks', $ranks);
 		}
 	}
 	
