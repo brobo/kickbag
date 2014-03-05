@@ -59,6 +59,14 @@ class Student extends AppModel {
 					)
 			), 'dob' => array(
 					'rule' => 'notEmpty'
+			), 'uniform_size' => array(
+					'rule' => array('maxLength', 8),
+					'message' => 'Length must be less than 8',
+					'allowEmpty' => true
+			), 'belt_size' => array(
+					'rule' => array('maxLength', 8),
+					'message' => 'Length must be less than 8',
+					'allowEmpty' => true
 			)
 	);
 	public $hasAndBelongsToMany = array(

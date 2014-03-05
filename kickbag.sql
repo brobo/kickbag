@@ -3,12 +3,14 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 04, 2014 at 03:20 AM
+-- Generation Time: Mar 05, 2014 at 01:14 AM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `kickbag_attendances`
@@ -112,22 +114,6 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kickbag_hours`
---
-
-CREATE TABLE IF NOT EXISTS `kickbag_hours` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `student_id` int(11) NOT NULL,
-  `date` date NOT NULL,
-  `hours` int(11) NOT NULL,
-  `created` datetime NOT NULL,
-  `modified` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `kickbag_programs`
 --
 
@@ -170,6 +156,8 @@ CREATE TABLE IF NOT EXISTS `kickbag_students` (
   `dob` date NOT NULL,
   `rank_id` int(11) NOT NULL,
   `ata_number` varchar(10) DEFAULT NULL,
+  `uniform_size` varchar(8) DEFAULT NULL,
+  `belt_size` varchar(8) DEFAULT NULL,
   `notes` text NOT NULL,
   `picture` varchar(50) DEFAULT 'nopicture.png',
   `search` varchar(100) NOT NULL,
@@ -178,7 +166,7 @@ CREATE TABLE IF NOT EXISTS `kickbag_students` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   KEY `id_2` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Triggers `kickbag_students`
@@ -190,7 +178,7 @@ CREATE TRIGGER `create_search` BEFORE INSERT ON `kickbag_students`
 //
 DELIMITER ;
 
--- -------------------------------------------------------
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `kickbag_transactions`

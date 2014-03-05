@@ -50,6 +50,14 @@
 		<td><?php echo date('F jS Y', strtotime($s['Student']['dob'])); ?>
 	</tr>
 	<tr>
+		<th>Uniform Size</th>
+		<td><?php echo $s['Student']['uniform_size']; ?></td>
+	</tr>
+	<tr>
+		<th>Belt Size</th>
+		<td><?php echo $s['Student']['belt_size']; ?></td>
+	</tr>
+	<tr>
 		<th>Notes</th>
 		<td><?php echo $s['Student']['notes']; ?></td>
 	</tr>
