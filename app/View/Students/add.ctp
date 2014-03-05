@@ -26,6 +26,7 @@ echo $this->Form->input('dob', array(
 		'minYear' => date('Y') - 60,
 		'maxYear' => date('Y') - 4		
 ));
+echo $this->Form->input('rank_id', array('options' => $ranks, 'type' => 'select'));
 echo $this->Form->input('ata_number', array('required' => false));
 echo $this->Form->input('notes', array('type'=>'textarea'));
 echo $this->Form->end('Register Student');

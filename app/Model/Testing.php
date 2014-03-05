@@ -66,15 +66,6 @@ class Testing extends AppModel {
 		return !$running ? null : $running['Testing'];
 	}
 	
-	public $ranks = array(
-			'B' => '1° Degree',
-			'2B' => '2° Degree',
-			'2B+' => '2° Degree +',
-			'3B' => '3° Degree',
-			'4B' => '4° Degree',
-			'5B' => '5° Degree',
-			'6B+' => '6° Degree (+)');
-	
 	public function getStudents($tid) {
 		
 	}

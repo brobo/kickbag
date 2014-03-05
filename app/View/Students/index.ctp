@@ -38,8 +38,8 @@
 		<tr>
 			<td><?php echo $this->Html->link($s['Student']['last_name'] . ', ' . $s['Student']['first_name'], array('action'=>'view', $s['Student']['id'])); ?>
 			<td>
-				<div style="display:none;"><?php echo $ranks[$s['Student']['rank']]['priority'];?>"></div>
-				<?php echo $ranks[$s['Student']['rank']]['title']; ?>
+				<div style="display:none;"><?php echo $rank_z[$s['Student']['rank_id']];?>"></div>
+				<?php echo $s['Student']['rank']; ?>
 			</td>
 			<td><?php echo $s['Student']['ata_number']; ?></td>
 			<td><?php if ($s['Transaction']['total'] > 0) echo sprintf("%d open, total $%.2f", count($s['Transaction'])-1, $s['Transaction']['total']); ?></td>

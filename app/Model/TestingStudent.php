@@ -29,6 +29,9 @@ class TestingStudent extends AppModel {
 				'dependent' => false)	
 	); 
 	
+	//TODO -- This is all vestigal now! This needs to go away!
+	// Remember, ranks are now based on the lookup table!
+	/*
 	public $ranks = array(
 			'W' => 'White',
 			'W+' => 'White +',
@@ -53,5 +56,5 @@ class TestingStudent extends AppModel {
 			'3B' => '3° Degree',
 			'4B' => '4° Degree',
 			'5B' => '5° Degree',
-			'6B+' => '6° Degree (+)');
+			'6B+' => '6° Degree (+)');*/
 }

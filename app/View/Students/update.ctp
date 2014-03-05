@@ -26,8 +26,10 @@ echo $this->Form->input('dob', array(
 		'minYear' => date('Y') - 60,
 		'maxYear' => date('Y') - 4
 ));
-echo $this->Form->input('rank', array('options' => $ranks, 'type' => 'select', 'value' => 'W'));
+echo $this->Form->input('rank_id', array('options' => $ranks, 'type' => 'select'));
 echo $this->Form->input('ata_number');
+echo $this->Form->input('uniform_size');
+echo $this->Form->input('belt_size');
 echo $this->Form->input('notes', array('type'=>'textarea'));
 echo $this->Form->input('Student.id', array('type'=>'hidden', 'value'=>$this->request->data['Student']['id']));
 echo $this->Form->end('Save Student');
