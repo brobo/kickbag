@@ -9,7 +9,7 @@
 *
 * This program is distributed in the hope that it will be useful, but
 * WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOE. See the
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 * GNU General Public License for more details.
 *
 * You should have received a copy of the GNU General Public License
@@ -23,7 +23,7 @@ echo $this->Form->input('first_name', array('maxlength'=>64));
 echo $this->Form->input('last_name', array('maxlength'=>64));
 echo $this->Form->input('dob', array(
 		'dateFormat' => 'MDY',
-		'minYear' => date('Y') - 60,
+		'minYear' => date('Y') - 65,
 		'maxYear' => date('Y') - 4		
 ));
 echo $this->Form->input('rank_id', array('options' => $ranks, 'type' => 'select'));

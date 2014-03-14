@@ -11,7 +11,7 @@
 *
 * This program is distributed in the hope that it will be useful, but
 * WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOE. See the
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 * GNU General Public License for more details.
 *
 * You should have received a copy of the GNU General Public License
@@ -32,6 +32,9 @@ class Student extends AppModel {
 		),
 		'Attendance',
 		'Barcode'
+	);
+	public $hasOne = array(
+		'Instructor'
 	);
 	public $belongsTo = array(
 		'Rank'

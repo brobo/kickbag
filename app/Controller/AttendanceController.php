@@ -11,7 +11,7 @@
 *
 * This program is distributed in the hope that it will be useful, but
 * WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOE. See the
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 * GNU General Public License for more details.
 *
 * You should have received a copy of the GNU General Public License
@@ -89,7 +89,7 @@ class AttendanceController extends AppController {
 		$this->layout = 'ajax';
 		
 		$conditions = array();
-		$limit = 10;
+		$limit = 100;
 		$fields = null;
 		if (isset($_POST['start_date'])) {
 			$conditions['date >= '] = $_POST['start_date'];

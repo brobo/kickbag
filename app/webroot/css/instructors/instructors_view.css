@@ -1,0 +1,25 @@
+#edit {
+	width:100%;
+	text-align:right;
+	float:right;
+}
+#instructor_info {
+	display:inline-block;
+	width:25%;
+}
+
+.highlight-date {
+	background-color: #ffff00;
+}
+
+#profile {
+	position:relative;
+	width:100%;
+}
+
+#picture {
+	float:right;
+	width:200px;
+	height:300px;
+	margin-top:-30px;
+}

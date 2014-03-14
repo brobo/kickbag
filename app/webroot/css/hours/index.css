@@ -1,0 +1,12 @@
+@CHARSET "UTF-8";
+#sidebar {
+	width:200px;
+	float:right;
+	clear:none;
+}
+
+#HourHours {
+	width:500px;
+	padding-right:-250px;
+	float:left;
+}
