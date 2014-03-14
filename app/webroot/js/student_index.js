@@ -19,6 +19,7 @@
 $(function() {
 	$("#students_table").dataTable({
 		"sPaginationType": "full_numbers",
+		"iDisplayLength": 25,
 		"aoColumns": [
 		              {"sSortDataType":"dom-text"},
 		              {"sSortDataType":"dom-text"},

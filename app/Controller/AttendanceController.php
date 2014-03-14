@@ -89,7 +89,7 @@ class AttendanceController extends AppController {
 		$this->layout = 'ajax';
 		
 		$conditions = array();
-		$limit = 10;
+		$limit = 100;
 		$fields = null;
 		if (isset($_POST['start_date'])) {
 			$conditions['date >= '] = $_POST['start_date'];
