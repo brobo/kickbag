@@ -38,7 +38,7 @@
 		<tr>
 			<td><?php echo $this->Html->link($s['Student']['last_name'] . ', ' . $s['Student']['first_name'], array('action'=>'view', $s['Student']['id'])); ?>
 			<td>
-				<div style="display:none;"><?php echo sprintf('%02d', $rank_z[$s['Student']['rank_id']]);?>"></div>
+				<div style="display:none;"><?php echo sprintf("%03d", $rank_z[$s['Student']['rank_id']]);?></div>
 				<?php echo $s['Student']['rank']; ?>
 			</td>
 			<td><?php echo $s['Student']['ata_number']; ?></td>

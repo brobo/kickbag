@@ -115,10 +115,11 @@ class StudentsController extends AppController {
 			$ranks[$rank['Rank']['id']] = str_replace('&deg', ' degree', $rank['Rank']['value']);
 		}
 		
+		$this->set('ranks', $ranks);
 		if (!$this->data) {
 			$this->data = $s;
-			$this->set('ranks', $ranks);
 		}
+		
 	}
 	
 	public function remove($cid, $sid) {

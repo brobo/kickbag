@@ -44,11 +44,15 @@ class Student extends AppModel {
 	);
 	public $validate = array(
 			'first_name' => array(
-					'rule' => 'alphaNumeric',
-					'required' => true
+					'alphaNumericDashUnderscore' => array(
+						'rule' => 'alphaNumericDashUnderscore',
+						'message' => 'Not a valid name'
+					)
 			), 'last_name' => array(
-					'rule' => 'alphaNumeric',
-					'required' => true
+					'alphaNumericDashUnderscore' => array(
+						'rule' => 'alphaNumericDashUnderscore',
+						'message' => 'Not a valid name'
+					)
 			), 'ata_number' => array(
 					'numeric' => array(
 						'rule' => 'numeric',
@@ -95,6 +99,15 @@ class Student extends AppModel {
 		));
 
 		return true;
+	}
+	
+	public function alphaNumericDashUnderscore($check) {
+		// $data array is passed using the form field name as the key
+		// have to extract the value to make thu function generic
+		$value = array_values($check);
+		$value = $value[0];
+		
+		return preg_match('|^[0-9a-zA-Z_-]*$|', $value);
 	}
 }
 ?>

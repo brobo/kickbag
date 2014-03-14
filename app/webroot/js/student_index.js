@@ -23,7 +23,7 @@ $(function() {
 		"aoColumns": [
 		              {"sSortDataType":"dom-text"},
 		              {"sSortDataType":"dom-text"},
-		              {"sSortDataType":"dom-text", sType:"numeric"},
+		              {"sSortDataType":"dom-text"},
 		              null,
 		              null
 		 ]

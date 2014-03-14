@@ -19,8 +19,8 @@
 <h1>Update Student</h1>
 <?php
 echo $this->Form->create('Student');
-echo $this->Form->input('first_name');
-echo $this->Form->input('last_name');
+echo $this->Form->input('first_name', array('maxlength'=>64));
+echo $this->Form->input('last_name', array('maxlength'=>64));
 echo $this->Form->input('dob', array(
 		'dateFormat' => 'MDY',
 		'minYear' => date('Y') - 65,
