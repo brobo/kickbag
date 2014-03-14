@@ -23,6 +23,7 @@
 <?php echo $this->Html->link('Update', array('controller'=>'instructors', 'action'=>'update', $i['Instructor']['id']), array('id'=>'update')); ?> 
 <?php echo $this->Html->link('Student Profile', array('controller'=>'students', 'action'=>'view', $i['Student']['id'])); ?>
 <div id='profile'>
+	<input type="hidden" id="instructor_id" value="<?php echo $i['Instructor']['id']; ?>" />
 	<div id="picture">
 		<?php
 			$url = $i['Student']['picture'] ? 'students/' . $i['Student']['picture'] : 'students/nopicture.png';

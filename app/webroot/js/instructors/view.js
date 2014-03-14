@@ -28,7 +28,7 @@ function loadMonthToMap(month) {
 			data:{
 				start_date: month + "-01",
 				end_date: month + "-31",
-				student_id: $('#instructor_id').val()
+				instructor_id: $('#instructor_id').val()
 			},
 			async: false,
 			success: function(data) {
@@ -70,7 +70,8 @@ function updateHoursCount(month, year) {
 	var monthText = year + "-" + twoDigit(month);
 	var total = 0;
 	for (var day in dateMap[monthText]) total += dateMap[monthText][day];
-	$('#hours_label').html('Taught ' + total + ' hours in ' + months[month] + ', ' + year + '.');
+	var word = total == 1 ? ' hour' : ' hours';
+	$('#hours_label').html('Taught ' + total + word + ' in ' + months[month] + ', ' + year + '.');
 }
 
 function twoDigit(date) {

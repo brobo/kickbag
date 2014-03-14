@@ -76,17 +76,21 @@ class HoursController extends AppController {
 		echo json_encode($json);
 	}
 	
-	public function search() {
+	public function search($search = '') {
 		if (!$this->request->is('Ajax')) {
 			$this->redirect(array('action'=>'index'));
 		}
 		$this->autoRender = false;
 		$this->layout = 'ajax';
-	
+		
 		if (!$this->request->isPost() || !($search = $this->request->data['search'])) {
 			echo json_encode(array($search));
 		} else {
-			$student = $this->Hour->Instructor->Student->Barcode->findByValue($search);
+			$student;
+			$barcode = $this->Hour->Instructor->Student->Barcode->findByValue($search, array('recusive'=>0));
+			if ($barcode) {
+				$student = $this->Hour->Instructor->Student->findById($barcode['Barcode']['student_id']);
+			}
 			if (!$student) {
 				$student = $this->Hour->Instructor->Student->findByAtaNumber($search);
 				if (!$student) {
