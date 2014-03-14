@@ -20,6 +20,7 @@
 <?php echo $this->Html->css(array('dataTables')); ?>
 <h2>Add Barcode</h2>
 <?php echo $this->Html->link('Print more barcodes', array('controller'=>'barcodes', 'action'=>'create')); ?>
+<input type="text" id="scan_space">
 <div id="student_info" style="display:none;"></div>
 <div id="student_select" style="display:none;">
 	<?php echo $this->Form->create('Barcode'); ?>
