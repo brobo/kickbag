@@ -9,7 +9,7 @@
 *
 * This program is distributed in the hope that it will be useful, but
 * WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOE. See the
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 * GNU General Public License for more details.
 *
 * You should have received a copy of the GNU General Public License
@@ -20,7 +20,8 @@
 <?php echo $this->Html->script(array('jquery/plugins/jExpand', 'jquery/plugins/ui.js', 'student_view.js', 'jquery/plugins/dropdown-menu')); ?>
 <h2><?php echo $s['Student']['name']; ?></h2>
 <?php echo $this->Html->link('Back', array('controller'=>'students', 'action'=>'index')); ?> 
-<?php echo $this->Html->link('Update', array('controller'=>'students', 'action'=>'update', $s['Student']['id']), array('id'=>'update')); ?>
+<?php echo $this->Html->link('Update', array('controller'=>'students', 'action'=>'update', $s['Student']['id']), array('id'=>'update')); ?> 
+<?php if ($s['Instructor']['id']) echo $this->Html->link('Instructor profile', array('controller'=>'instructors', 'action'=>'view', $s['Instructor']['id'])); ?>
 <input type="hidden" id="student_id" value="<?php echo $s['Student']['id'];?>">
 <div id='profile'>
 	<div id="picture">

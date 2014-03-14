@@ -1,5 +1,4 @@
 <?php
-
 /*************************************************************************
  * This file is a part of the Kickbag martial arts manager.
 * Copyright © 2014 Colby Brown
@@ -11,7 +10,7 @@
 *
 * This program is distributed in the hope that it will be useful, but
 * WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOE. See the
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 * GNU General Public License for more details.
 *
 * You should have received a copy of the GNU General Public License
@@ -21,6 +20,6 @@
 
 App::uses('AppModel', 'Model');
 class Attendance extends AppModel {
-	public $belongsTo = "Student";
+	public $belongsTo = 'Student';
 }
 ?>
