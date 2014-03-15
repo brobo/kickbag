@@ -16,8 +16,8 @@
 * along with this program; if not, you can find a copy of it at
 * <http://www.gnu.org/licenses/gpl.html>
 ***********************************************************************-->
-<?php echo $this->Html->css(array('attendance_index.css', 'jquery_ui/ui.css')); ?>
-<?php echo $this->Html->script(array('jquery/plugins/ui.js', 'attendance_index.js')); ?>
+<?php echo $this->Html->css(array('attendance/index.css', 'jquery_ui/ui.css')); ?>
+<?php echo $this->Html->script(array('jquery/plugins/ui.js', 'attendance/index.js')); ?>
 <h2>Attendance</h2>
 <h1>Enter a student's ATA number to mark them as present.</h1>
 <input type="text" id="search">

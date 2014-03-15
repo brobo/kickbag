@@ -16,8 +16,8 @@
 * along with this program; if not, you can find a copy of it at
 * <http://www.gnu.org/licenses/gpl.html>
 ***********************************************************************-->
-<?php echo $this->Html->css(array('transactions_index')); ?>
-<?php echo $this->Html->script(array('jquery/jquery-ui', 'transactions_index')); ?>
+<?php echo $this->Html->css(array('transactions/add.css')); ?>
+<?php echo $this->Html->script(array('jquery/jquery-ui', 'transactions/add.js')); ?>
 <?php echo $this->Js->buffer("$('#student_search').autocomplete({
 			source: '" . $this->Html->url(array('controller'=>'students', 'action'=>'search')) . "',
 			position: {at:'left bottom+20'},

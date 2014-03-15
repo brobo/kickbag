@@ -19,8 +19,8 @@
 *************************************************************************/
 ?>
 
-<?php echo $this->Html->script(array('student_picture.js')); ?>
-<?php echo $this->Html->css(array('students_picture.css')); ?>
+<?php echo $this->Html->script(array('students/picture.js')); ?>
+<?php echo $this->Html->css(array('students/picture.css')); ?>
 <h2>Student Picture</h2>
 <h1>Take a picture for <?php echo $student['name']; ?></h1>
 <div id="area">
