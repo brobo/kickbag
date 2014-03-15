@@ -67,12 +67,7 @@ class InstructorsController extends AppController {
 	
 		if (!$this->data) {
 			$this->set('s', $instructor['Student']);
-			$collars_raw = $this->Instructor->Collar->find('all');
-			$collars = array();
-			foreach ($collars_raw as $collar) {
-				$collars[$collar['Collar']['id']] = $collar['Collar']['value'];
-			}
-			$this->set('collars', $collars);
+			$this->set('collars', $this->Instructor->Collar->getCollarValues());
 			$this->data = $instructor;
 		}
 	}
@@ -81,23 +76,8 @@ class InstructorsController extends AppController {
 		$instructors = $this->Instructor->find('all');
 		$this->set('instructors', $instructors);
 	
-		$ranksModel = ClassRegistry::init('Rank');
-		$ranks = $ranksModel->find('all', array('fields'=>array('id', 'zindex', 'value')));
-		$rank_z = array();
-		foreach ($ranks as $rank) {
-			$rank_z[$rank['Rank']['id']]['z'] = $rank['Rank']['zindex'];
-			$rank_z[$rank['Rank']['id']]['value'] = $rank['Rank']['value'];
-		}
-		
-		$collarsModel = ClassRegistry::init('Collar');
-		$collars = $collarsModel->find('all');
-		$collar_z = array();
-		foreach ($collars as $collar) {
-			$collar_z[$collar['Collar']['id']] = $collar['Collar']['zindex'];
-		}
-	
-		$this->set('rank_z', $rank_z);
-		$this->set('collar_z', $collar_z);
+		$this->set('ranks', $this->Instructor->Student->Rank->getRanks());
+		$this->set('collars', $this->Instructor->Collar->getCollars());
 	}
 	
 	function view($iid = null) {

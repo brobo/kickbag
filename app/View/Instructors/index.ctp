@@ -37,11 +37,11 @@
 		<tr>
 			<td><?php echo $this->Html->link($i['Student']['last_name'] . ', ' . $i['Student']['first_name'], array('action'=>'view', $i['Instructor']['id'])); ?>
 			<td>
-				<div style="display:none;"><?php echo $rank_z[$i['Student']['rank_id']]['z']; ?></div>
-				<?php echo $rank_z[$i['Student']['rank_id']]['value']; ?>
+				<div style="display:none;"><?php echo $ranks[$i['Student']['rank_id']]['zindex']; ?></div>
+				<?php echo $ranks[$i['Student']['rank_id']]['value']; ?>
 			</td>
 			<td>
-				<div style="display:none;"><?php echo $collar_z[$i['Instructor']['collar_id']];?></div>
+				<div style="display:none;"><?php echo $collars[$i['Instructor']['collar_id']]['zindex'];?></div>
 				<?php echo $i['Instructor']['collar']; ?>
 			</td>
 			<td>
