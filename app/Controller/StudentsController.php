@@ -33,15 +33,7 @@ class StudentsController extends AppController {
 			$students[$id]['Transaction']['total'] = $total;
 		}
 		$this->set('students', $students);
-		
-		$ranksModel = ClassRegistry::init('Rank');
-		$ranks = $ranksModel->find('all');
-		$rank_z = array();
-		foreach ($ranks as $rank) {
-			$rank_z[$rank['Rank']['id']] = $rank['Rank']['zindex'];
-		}
-		
-		$this->set('rank_z', $rank_z);
+		$this->set('ranks', $this->Student->Rank->getRanks());
 	}
 	
 	public function view($sid = null) {
@@ -74,13 +66,9 @@ class StudentsController extends AppController {
 				$this->Session->setFlash('Unable to register student.');
 			}
 		} else {
-			$rankModel = ClassRegistry::init('Rank');
-			$rankRows = $rankModel->find('all', array(
-					'fields' => array('id', 'value')
-			));
-			$ranks = array();
-			foreach ($rankRows as $rank) {
-				$ranks[$rank['Rank']['id']] = str_replace('&deg', ' degree', $rank['Rank']['value']);
+			$ranks = $this->Student->Rank->getRankValues();
+			foreach ($ranks as $key => $_) {
+				$ranks[$key] = str_replace('&deg', ' degree', $ranks[$key]);
 			}
 			$this->set('ranks', $ranks);
 		}
@@ -106,16 +94,12 @@ class StudentsController extends AppController {
 			}
 		}
 		
-		$rankModel = ClassRegistry::init('Rank');
-		$rankRows = $rankModel->find('all', array(
-			'fields' => array('id', 'value')
-		));
-		$ranks = array();
-		foreach ($rankRows as $rank) {
-			$ranks[$rank['Rank']['id']] = str_replace('&deg', ' degree', $rank['Rank']['value']);
+		$ranks = $this->Student->Rank->getRankValues();
+		foreach ($ranks as $key => $_) {
+			$ranks[$key] = str_replace('&deg', ' degree', $ranks[$key]);
 		}
-		
 		$this->set('ranks', $ranks);
+			
 		if (!$this->data) {
 			$this->data = $s;
 		}
