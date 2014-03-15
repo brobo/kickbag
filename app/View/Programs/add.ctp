@@ -16,7 +16,7 @@
 * along with this program; if not, you can find a copy of it at
 * <http://www.gnu.org/licenses/gpl.html>
 ***********************************************************************-->
-<?php echo $this->Html->script(array('programs_add.js')); ?>
+<?php echo $this->Html->script(array('programs/add.js')); ?>
 <h2>Add Program</h2>
 <?php
 echo $this->Form->create('Program');

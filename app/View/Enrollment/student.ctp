@@ -17,7 +17,7 @@
 * <http://www.gnu.org/licenses/gpl.html>
 ***********************************************************************-->
 <?php echo $this->Html->css(array('jquery_ui/ui.css')); ?>
-<?php echo $this->Html->script(array('jquery/plugins/ui.js', 'enrollment_student.js')); ?>
+<?php echo $this->Html->script(array('jquery/plugins/ui.js', 'enrollment/student.js')); ?>
 <?php 
 	$options=array();
 	$info=array();

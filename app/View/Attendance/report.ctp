@@ -16,8 +16,8 @@
 * along with this program; if not, you can find a copy of it at
 * <http://www.gnu.org/licenses/gpl.html>
 ***********************************************************************-->
-<?php echo $this->Html->script(array('jquery/plugins/ui.js', 'attendance_report.js')); ?>
-<?php echo $this->Html->css(array('jquery_ui/ui.css', 'attendance_report.css')); ?>
+<?php echo $this->Html->script(array('jquery/plugins/ui.js', 'attendance/report.js')); ?>
+<?php echo $this->Html->css(array('jquery_ui/ui.css', 'attendance/report.css')); ?>
 <h2>Attendance Report</h2>
 <h3 id="daterange">Somewhen to nowhen</h3>
 <div>

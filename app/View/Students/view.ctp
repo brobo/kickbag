@@ -16,8 +16,8 @@
 * along with this program; if not, you can find a copy of it at
 * <http://www.gnu.org/licenses/gpl.html>
 ***********************************************************************-->
-<?php echo $this->Html->css(array('students_view', 'jquery_ui/ui.css', 'dropdown-menu')); ?>
-<?php echo $this->Html->script(array('jquery/plugins/jExpand', 'jquery/plugins/ui.js', 'student_view.js', 'jquery/plugins/dropdown-menu')); ?>
+<?php echo $this->Html->css(array('students/view.css', 'jquery_ui/ui.css', 'dropdown-menu')); ?>
+<?php echo $this->Html->script(array('jquery/plugins/jExpand', 'jquery/plugins/ui.js', 'students/view.js', 'jquery/plugins/dropdown-menu')); ?>
 <h2><?php echo $s['Student']['name']; ?></h2>
 <?php echo $this->Html->link('Back', array('controller'=>'students', 'action'=>'index')); ?> 
 <?php echo $this->Html->link('Update', array('controller'=>'students', 'action'=>'update', $s['Student']['id']), array('id'=>'update')); ?> 

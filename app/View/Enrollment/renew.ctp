@@ -17,7 +17,7 @@
 * <http://www.gnu.org/licenses/gpl.html>
 ***********************************************************************-->
 <?php echo $this->Html->css(array('jquery_ui/ui.css')); ?>
-<?php echo $this->Html->script(array('jquery/plugins/ui.js', 'enrollment_renew.js')); ?>
+<?php echo $this->Html->script(array('jquery/plugins/ui.js', 'enrollment/renew.js')); ?>
 <?php 
 $date = date_create_from_format('Y-m-d', $enrollment['Enrollment']['expiration_date']);
 $findate = date_add($date, new DateInterval('P' . $enrollment['Program']['duration'] . 'M'));

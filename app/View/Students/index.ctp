@@ -16,7 +16,7 @@
 * along with this program; if not, you can find a copy of it at
 * <http://www.gnu.org/licenses/gpl.html>
 ***********************************************************************-->
-<?php echo $this->Html->script(array('jquery/plugins/dataTables', 'student_index.js')); ?>
+<?php echo $this->Html->script(array('jquery/plugins/dataTables', 'students/index.js')); ?>
 <?php echo $this->Html->css(array('dataTables')); ?>
 <h1>Students</h1>
 <?php echo $this->Html->link(
