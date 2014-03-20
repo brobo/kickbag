@@ -17,10 +17,7 @@
 * <http://www.gnu.org/licenses/gpl.html>
 ***********************************************************************-->
 <?php echo $this->Html->css(array('dataTables')); ?>
-<?php echo $this->Html->script(array('jquery/plugins/dataTables')); ?>
-<?php echo $this->Js->buffer('$("#contacts_table").dataTable({
-			"sPaginationType": "full_numbers"
-		});'); ?>
+<?php echo $this->Html->script(array('jquery/plugins/dataTables', 'contacts/index')); ?>
 <h1>All Contacts</h1>
 <table id="contacts_table">
 	<thead>
