@@ -28,8 +28,8 @@ class TestingsController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Testing->create();
-			$this->request->data['Testing']['password'] = Security::hash($this->request->data['Testing']['password'], null, true);
-			$this->request->data['Testing']['re_password'] = Security::hash($this->request->data['Testing']['re_password'], null, true);
+			/*$this->request->data['Testing']['password'] = Security::hash($this->request->data['Testing']['password'], null, true);
+			$this->request->data['Testing']['re_password'] = Security::hash($this->request->data['Testing']['re_password'], null, true);*/
 			if ($this->Testing->save($this->request->data)) {
 				$this->Session->setFlash('Testing successfully created.', 'flash_success');
 				$this->redirect(array('action' => 'manage'));
@@ -41,15 +41,21 @@ class TestingsController extends AppController {
 	
 	public function manage() {
 		$testings = $this->Testing->find('all', array(
-				'conditions' => array('Testing.time >= CURDATE()'),
+				'conditions' => array('Testing.time >= DATE_ADD(CURDATE(), INTERVAL 4 DAY)'),
 				'order' => array('Testing.time')
 		));
 		$this->set('testings', $testings);
-		$running = $this->Testing->find('first', array('conditions'=>array('active'=>true)));
-		$this->set('start', !$running);
+		/*$running = $this->Testing->find('first', array('conditions'=>array('active'=>true)));
+		$this->set('start', !$running);*/
 	}
 	
-	public function start($tid = null) {
+	public function view($tid) {
+		$testing = $this->Testing->findById($tid);
+		$this->set('testing', $testing);
+		$this->set('ranks', $this->Testing->TestingStudent->Rank->getRanks());
+	}
+	
+	/*public function start($tid = null) {
 		if (!$tid) {
 			throw new NotFoundException(__("Invalid testing"));
 		}
@@ -197,7 +203,7 @@ class TestingsController extends AppController {
 		} else {
 			$this->set('testing', $testing);
 		}
-	}
+	}*/
 	
 	public function edit($tid = null) {
 		if (!$tid) {
@@ -210,11 +216,11 @@ class TestingsController extends AppController {
 		
 		if ($this->request->is('post') || $this->request->is('put')) {
 			$this->Testing->id = $tid;
-			$params = array();
+			/*$params = array();
 			if ($this->request->data['Testing']['password'] == "") {
 				$params = array('fieldList' => array('time', 'description'));
-			}
-			if ($this->Testing->save($this->request->data, $params)) {
+			}*/
+			if ($this->Testing->save($this->request->data, $this->request->data)) {
 				$this->Session->setFlash('Testing saved.', 'flash_success');
 				$this->redirect(array('action' => 'manage'));
 			} else {
@@ -227,9 +233,9 @@ class TestingsController extends AppController {
 		}
 	}
 	
-	public function beforeFilter() {
+	/*public function beforeFilter() {
 		parent::beforeFilter();
 		$this->Auth->allow('login', 'logout', 'update', 'register', 'index');
-	}
+	}*/
 }
 ?>

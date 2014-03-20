@@ -1,4 +1,4 @@
-<!--**********************************************************************
+/*************************************************************************
 * This file is a part of the Kickbag martial arts manager.
 * Copyright © 2014 Colby Brown
 *
@@ -15,14 +15,16 @@
 * You should have received a copy of the GNU General Public License
 * along with this program; if not, you can find a copy of it at
 * <http://www.gnu.org/licenses/gpl.html>
-***********************************************************************-->
-<?php echo "<h2>Register $name for testing</h2>"; ?>
-<table>
-<?php foreach ($testings as $t): ?>
-	<tr>
-		<td><?php echo date('l, F j o g:i a', strtotime($t['Testing']['time'])); ?></td>
-		<td><?php echo $t['Testing']['description']; ?></td>
-		<td><?php echo $t[0]['registered'] ? __("Registered") : $this->Html->link('Register', array ('action' => 'register_testing', $atan, $t['Testing']['id'])); ?></td>
-	</tr>
-<?php endforeach; ?>
-</table>
+*************************************************************************/
+$(function() {
+	$("#students").dataTable({
+		"sPaginationType": "full_numbers",
+		"iDisplayLength": 25,
+		"aoColumns": [
+		              {"sSortDataType":"dom-text"},
+		              {"sSortDataType":"dom-text"},
+		              {"sSortDataType":"dom-text"},
+		              null
+		 ]
+	});
+});

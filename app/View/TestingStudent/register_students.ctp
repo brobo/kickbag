@@ -24,6 +24,8 @@
 				{"bSearchable": false, "aTargets": [1]}
 	]});'); ?>
 <?php  echo "<h2>Register students for $description on $date</h2>"; ?>
+<?php echo $this->Html->link('Back', array('controller'=>'testings', 'action'=>'manage')); ?> 
+<?php echo $this->Html->link('View registered students', array('controller'=>'testings', 'action'=>'view', $tid)); ?>
 <table id="students_table">
 	<thead>
 		<tr>
@@ -37,9 +39,9 @@
 		<?php foreach ($students as $s): ?>
 		<tr>
 			<td><?php echo $s['Student']['last_name'] . ', ' . $s['Student']['first_name']; ?>
-			<td><?php echo $ranks[$s['Student']['rank']]; ?></td>
+			<td><?php echo $s['Student']['rank']; ?></td>
 			<td><?php echo $s['Student']['ata_number']; ?></td>
-			<td><?php echo $s[0]['registered'] ? "Registered" : $this->Html->link('Register', array('action'=>'register_students', $tid, $s['Student']['ata_number'])); ?>
+			<td><?php echo $s[0]['registered'] ? "Registered" : $this->Html->link('Register', array('action'=>'register_students', $tid, $s['Student']['id'])); ?>
 		</tr>
 		<?php endforeach; ?>
 	</tbody>

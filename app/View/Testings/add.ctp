@@ -21,8 +21,8 @@
 echo $this->Form->input('time', array(
 		'minYear' => date('Y')
 ));
-echo $this->Form->input('password');
-echo $this->Form->input('re_password', array('type'=>'password', 'label'=>'Re enter password'));
+/*echo $this->Form->input('password');
+echo $this->Form->input('re_password', array('type'=>'password', 'label'=>'Re enter password'));*/
 echo $this->Form->input('description');
 echo $this->Form->end('Schedual testing');
 ?>
