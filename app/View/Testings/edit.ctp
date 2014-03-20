@@ -20,6 +20,6 @@
 <?php echo $this->Form->create('Testing'); ?>
 <?php echo $this->Form->input('time'); ?>
 <?php echo $this->Form->input('description'); ?>
-<?php echo $this->Form->input('password', array('label' => 'New Password <h6>leave blank to remain unchanged</h6>', 'required'=> false, 'value' => '')); ?>
+<?php /*echo $this->Form->input('password', array('label' => 'New Password <h6>leave blank to remain unchanged</h6>', 'required'=> false, 'value' => '')); */?>
 <?php echo $this->Form->submit('Save'); ?>
 <?php echo $this->Form->end(); ?>

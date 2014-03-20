@@ -16,17 +16,17 @@
 * along with this program; if not, you can find a copy of it at
 * <http://www.gnu.org/licenses/gpl.html>
 ***********************************************************************-->
-<?php if (!$start) {
+<?php /*if (!$start) {
 	echo 'Testing is currently running. ' . $this->Html->link('Log in as head judge.', array('action'=>'loginAsHead')) . ' ' . $this->Html->link('STOP', array('action'=>'stop'));
-}?>
+}*/?>
 <table>
 <?php foreach ($testings as $t): ?>
 	<tr>
-		<td><?php echo date('l, F j o g:i a', strtotime($t['Testing']['time'])); ?></td>
+		<td><?php echo $this->Html->link(date('j F g:i', strtotime($t['Testing']['time'])), array('action'=>'view', $t['Testing']['id'])); ?></td>
 		<td><?php echo $t['Testing']['description']; ?></td>
 		<td>
 			<ul class="dropdown-menu"><li>&#x25BC;<ul>
-				<?php if ($start) echo '<li>' . $this->Html->link('START', array('action'=>'start', $t['Testing']['id'])) . '</li>'; ?>
+				<?php /*if ($start) echo '<li>' . $this->Html->link('START', array('action'=>'start', $t['Testing']['id'])) . '</li>'; */?>
 				<li><?php echo $this->Html->link('Edit', array('action'=>'edit', $t['Testing']['id'])); ?></li>
 				<li><?php echo $this->Html->link('Students', array('controller' => 'TestingStudent', 'action'=>'register_students', $t['Testing']['id'])); ?>
 			</ul></li></ul>

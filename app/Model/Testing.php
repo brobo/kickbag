@@ -21,8 +21,9 @@
 
 class Testing extends AppModel {
 	public $name = 'Testing';
-	public $hasMany = array('PanelSeat', 'TestingStudent');
-	public $hasAndBelongsToMany = array(
+	//public $hasMany = array('PanelSeat', 'TestingStudent');
+	public $hasMany = array('TestingStudent');
+	/*public $hasAndBelongsToMany = array(
 		'Judge' => array(
 			'className' => 'Judge',
 			'joinTable' => 'panel_seats',
@@ -30,7 +31,7 @@ class Testing extends AppModel {
 			'associationForeignKey' => 'judge_id',
 			'unique' => false
 		),
-	);
+	);*/
 	
 	public $validate = array(
 			'password' => array(
@@ -51,7 +52,7 @@ class Testing extends AppModel {
 		return strcmp($this->data[$this->alias][key($array)], $this->data[$this->alias][$field]) == 0;
 	}
 	
-	public function authJudge() {
+	/*public function authJudge() {
 		if (!getRunningTesting()) {
 			throw new MethodNotAllowedException(__('Testing is not running!'));
 		}
@@ -59,12 +60,12 @@ class Testing extends AppModel {
 			$this->Session->setFlash('Please log in first!');
 			$this->redirect(array('action'=>'login'));
 		}
-	}
+	}*/
 	
-	public function getRunningTesting() {
+	/*public function getRunningTesting() {
 		$running = $this->find('first', array('conditions'=>array('active'=>true)));
 		return !$running ? null : $running['Testing'];
-	}
+	}*/
 	
 	public function getStudents($tid) {
 		

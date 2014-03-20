@@ -20,35 +20,36 @@
 *************************************************************************/
 
 class TestingStudentController extends AppController {
-	public function register_students($testing_id = null, $atan = null) {
+	public function register_students($testing_id = null, $sid = null) {
 		if (!$testing_id) {
-			$this->redirect(array('controller'=>'testing', 'action'=>'manage'));
+			$this->redirect(array('controller'=>'testings', 'action'=>'manage'));
 		}
-		if (!$atan) {
+		if (!$sid) {
 			$testing = $this->TestingStudent->Testing->findById($testing_id);
 			if (!$testing) {
 				$this->Session->setFlash("Error: Testing not found.");
 				$this->redirect(array('action'=>'manage'));
 			}
-			$tbl = $this->TestingStudent->tablePrefix . "testing_students";
+			$tbl = $this->TestingStudent->tablePrefix . $this->TestingStudent->useTable;
 			$students = $this->TestingStudent->Student->find('all', array(
-					'fields' => array ("*", "(ata_number in (select ata_number from $tbl where testing_id = $testing_id)) as registered")));
+					'fields' => array ("*", "(Student.id in (select student_id from $tbl where testing_id = $testing_id)) as registered")));
 			$this->set('students', $students);
 			$this->set('tid', $testing_id);
 			$this->set('description', $testing['Testing']['description']);
 			$this->set('date', date('F j o', strtotime($testing['Testing']['time'])));
-			$this->set('ranks', $this->TestingStudent->Student->ranks);
 		} else {
-			$student = $this->TestingStudent->Student->findByAtaNumber($atan);
+			$student = $this->TestingStudent->Student->findById($sid);
 			if (!$student) {
 				$this->Session->setFlash("Error: Could not find that student!");
 				$this->redirect(array('action'=>'register_students', $testing_id));
 			} else {
 				$entry = array('TestingStudent' => array(
-					'ata_number' => $student['Student']['ata_number'],
+					'student_id' => $student['Student']['id'],
 					'first_name' => $student['Student']['first_name'],
 					'last_name' => $student['Student']['last_name'],
-					'rank' => $student['Student']['rank'],
+					'rank_id' => $student['Student']['rank_id'],
+					'dob' => $student['Student']['dob'],
+					'ata_number' => $student['Student']['ata_number'],
 					'testing_id' => $testing_id
 				));
 				if ($this->TestingStudent->save($entry)) {
@@ -61,36 +62,15 @@ class TestingStudentController extends AppController {
 		}
 	}
 	
-	public function register_testing($atan = null, $testing_id = null) {
-		if ($atan === null) {
-			$this->redirect(array('controller' => 'students', 'action'=>'index'));
+	public function unregister($tsid = null) {
+		if (!$tsid) {
+			$this->redirect(array('controller'=>'testing', 'action'=>'manage'));
 		}
-		$student = $this->TestingStudent->Student->findByAtaNumber($atan);
-		if (!$student) {
-			throw new NotFoundException(__("Student not found."));
-		}
-		if ($testing_id === null) {
-			$this->set('atan', $atan);
-			$tbl = $this->TestingStudent->Student->tablePrefix . "testing_students";
-			$testings = $this->TestingStudent->Testing->find('all', array(
-					'fields' => array ("*", "(id in (select testing_id from $tbl where ata_number = $atan)) as registered")));
-			$this->set('name', $student['Student']['name']);
-			$this->set('testings', $testings);
+		if ($this->TestingStudent->delete($tsid)) {
+			$this->Session->setFlash('Successfully unregistered student.', 'flash_success');
 		} else {
-			$entry = array('TestingStudent' => array(
-					'ata_number' => $student['Student']['ata_number'],
-					'first_name' => $student['Student']['first_name'],
-					'last_name' => $student['Student']['last_name'],
-					'rank' => $student['Student']['rank'],
-					'testing_id' => $testing_id
-			));
-			if ($this->TestingStudent->save($entry)) {
-				$this->Session->setFlash('Successfully registered student.', 'flash_success');
-				$this->redirect(array('action'=>'register_testing', $atan));
-			} else {
-				$this->Session->setFlash("An error occured, unable to register student.");
-				$this->redirect(array('action'=>'register_testing', $atan));
-			}
+			$this->Session->setFlash('An error occured while unregistering the student.');
 		}
+		$this->redirect($this->referer());
 	}
 }
