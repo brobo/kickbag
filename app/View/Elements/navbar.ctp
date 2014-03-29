@@ -21,7 +21,10 @@
 <?php echo $this->Js->buffer('$(".dropdown-menu").dropdown_menu();')?>
 <div id="navbar">
 		<ul class="dropdown-menu">
-			<li><span>Integrity Martial Arts</span></li>
+		<li><span>Integrity Martial Arts</span></li>
+		<?php 
+		if ($this->Session->read('Auth.User')):
+		?>
 			<li><?php echo $this->Html->link('Students ▾', array('controller'=>'Students', 'action'=>'index')); ?><ul>
 				<li><?php echo $this->Html->link('Programs', array('controller'=>'Programs', 'action'=>'index')); ?></li>
 				<li><?php echo $this->Html->link('Contacts', array('controller'=>'Contacts', 'action'=>'index')); ?></li>
@@ -38,8 +41,8 @@
 					<li><?php echo $this->Html->link('Barcodes', array('controller'=>'barcodes', 'action'=>'index')); ?></li>
 				</ul></li>
 			</ul></li>
-			<?php 
-			if ($this->Session->read('Auth.User')) echo '<li>' . $this->Html->link('Logout', array('controller'=>'users', 'action'=>'logout')) . '</li>';
-			?>
+			<li><?php echo $this->Html->link('Testings', array('controller'=>'testings', 'action'=>'manage')); ?>
+			<li><?php echo $this->Html->link('Logout', array('controller'=>'users', 'action'=>'logout')); ?><li>
+		<?php endif; ?>
 		</ul>
 </div>

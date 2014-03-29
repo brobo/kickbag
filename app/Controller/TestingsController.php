@@ -41,7 +41,7 @@ class TestingsController extends AppController {
 	
 	public function manage() {
 		$testings = $this->Testing->find('all', array(
-				'conditions' => array('Testing.time >= DATE_ADD(CURDATE(), INTERVAL 4 DAY)'),
+				'conditions' => array('Testing.time >= DATE_ADD(CURDATE(), INTERVAL -4 DAY)'),
 				'order' => array('Testing.time')
 		));
 		$this->set('testings', $testings);
@@ -231,6 +231,23 @@ class TestingsController extends AppController {
 		if (!$this->data) {
 			$this->data = $testing;
 		}
+	}
+	
+	public function sheets($tid = null) {
+		if (!$tid) {
+			$this->Session->setFlash('Illegal testing id.');
+			$this->redirect(array('action'=>'manage'));
+		}
+		$testing = $this->Testing->findById($tid);
+		if (!$testing) {
+			$this->Session->setFlash('Testing not found.');
+			$this->redirect(array('action'=>'manage'));
+		}
+		$this->set('testing', $testing);
+		define('path_to_webroot', $this->webroot);
+		
+		$this->layout = 'pdf';
+		$this->render();
 	}
 	
 	/*public function beforeFilter() {
