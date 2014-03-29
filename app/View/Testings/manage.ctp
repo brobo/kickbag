@@ -19,7 +19,6 @@
 <?php /*if (!$start) {
 	echo 'Testing is currently running. ' . $this->Html->link('Log in as head judge.', array('action'=>'loginAsHead')) . ' ' . $this->Html->link('STOP', array('action'=>'stop'));
 }*/?>
-<?php echo $this->Html->link('Create Testing', array('action'=>'add')); ?>
 <table>
 <?php foreach ($testings as $t): ?>
 	<tr>
