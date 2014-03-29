@@ -35,7 +35,7 @@ class Contact extends AppModel {
 	
 	public $validate = array(
 		'name' => array('rule' => 'notEmpty', 'message' => 'Must provide a name'),
-		'email' => array('rule' => array('email', true), 'message' => 'Must be a valid email address.'),
+		'email' => array('rule' => array('email', false), 'message' => 'Must be a valid email address.'),
 		'phone' => array('rule' => array('phone', null, 'us'), 'message' => 'Must be a valid phone number.')
 	);
 }

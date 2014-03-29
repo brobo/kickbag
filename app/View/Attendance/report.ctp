@@ -31,7 +31,9 @@
 		</table>
 	</div>
 	<div id="sidebar">
+		Start date:
 		<div id="startdate" class="calendar"></div>
+		End date:
 		<div id="enddate" class="calendar"></div>
 	</div>
 </div>

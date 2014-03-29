@@ -18,7 +18,7 @@
 ***********************************************************************-->
 <?php echo $this->Html->css(array('dataTables')); ?>
 <?php echo $this->Html->script(array('jquery/plugins/dataTables', 'contacts/index')); ?>
-<h1>All Contacts</h1>
+<h2>All Contacts</h2>
 <table id="contacts_table">
 	<thead>
 		<tr>
