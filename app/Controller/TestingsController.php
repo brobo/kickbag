@@ -244,6 +244,7 @@ class TestingsController extends AppController {
 			$this->redirect(array('action'=>'manage'));
 		}
 		$this->set('testing', $testing);
+		$this->set('ranks', $this->Testing->TestingStudent->Rank->getRanks());
 		define('path_to_webroot', $this->webroot);
 		
 		$this->layout = 'pdf';

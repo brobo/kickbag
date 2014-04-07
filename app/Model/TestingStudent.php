@@ -30,7 +30,8 @@ class TestingStudent extends AppModel {
 	); 
 	public $belongsTo = array('Rank');
 	public $virtualFields = array(
-			'name' => 'CONCAT(TestingStudent.first_name, " ", TestingStudent.last_name)'
+			'name' => 'CONCAT(TestingStudent.first_name, " ", TestingStudent.last_name)',
+			'age' => 'DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), TestingStudent.dob)), "%Y")+0'
 	);
 	public function beforeFind($query = array()) {
 		if (!parent::beforeFind($query)) {

@@ -37,18 +37,65 @@ $pdf = new SheetPdf('P', 'in', array(8.5, 11));
 
 $pdf->SetAuthor('Colby Brown');
 $pdf->setPrintHeader(true);
+$pdf->SetMargins(.5,2);
 $pdf->setPrintFooter(true);
+
+$integrity_image = '../../webroot/img/integrity_logo.jpg';
+// $pdf->SetHeaderData($integrity_image, 1, 'Integrity ATA Martial Arts', 'Testing');
+
+//$pdf->SetHeaderMargin(10);
 
 $pdf->AddPage();
 
 $html = <<<EOD
-<table style="border-top:solid;"><tr>
-<td>Name (print)</td><td>Name (sign)</td><td>Rank</td>
+<table style="border-top:solid;width:88%"><tr>
+<td style="width:40%">Name (print)</td><td style="width:40%">Name (sign)</td><td>Rank</td>
 </tr></table>
 EOD;
 
 // Print text using writeHTMLCell()
 $pdf->writeHTMLCell(0, 0, '', 2, $html, 0, 1, 0, true, '', true);
+
+$html = <<<EOD
+<style> td{height: 25px; line-height:25px;}</style>
+<table border="1">
+<thead>
+	<tr style="text-align:center;">
+		<th colspan="3">Name</th>
+		<th>Rank</th>
+		<th>Age</th>
+		<th colspan="2">Form<br>(0-5)</th>
+		<th colspan="2">Sparring<br>(0-3)</th>
+		<th>Boards<br>(0-2)</th>
+		<th>Total</th>
+		<th>New Rank</th>
+	</tr>
+</thead>
+<tbody>
+EOD;
+
+foreach ($testing['TestingStudent'] as $s) {
+	$html .=
+	'<tr nobr="true">
+		<td colspan="3"> ' . $s['name'] . '</td>
+		<td> ' . $ranks[$s['rank_id']]['abbr'] . '</td>
+		<td> ' . $s['age'] . '</td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>';
+}
+
+$html .= <<<EOD
+</tbody>
+</table>
+EOD;
+
+$pdf->writeHTMLCell(0, 0, '', 2.5, $html, 0, 1, 0, true, '', true);
 
 echo $pdf->Output('testing_sheet.pdf');
 ?>
