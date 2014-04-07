@@ -16,7 +16,7 @@
 * along with this program; if not, you can find a copy of it at
 * <http://www.gnu.org/licenses/gpl.html>
 ***********************************************************************-->
-<?php echo $this->Html->script(array('barcode/index.js', 'jquery/plugins/dataTables')); ?>
+<?php echo $this->Html->script(array('barcodes/index.js', 'jquery/plugins/dataTables')); ?>
 <?php echo $this->Html->css(array('dataTables')); ?>
 <h2>Add Barcode</h2>
 <?php echo $this->Html->link('Print more barcodes', array('controller'=>'barcodes', 'action'=>'create')); ?>
