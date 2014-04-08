@@ -21,14 +21,9 @@
 
 App::uses('AppModel','Model');
 class TestingStudent extends AppModel {
+	//public $actsAs = 'Containable';
 	public $name = 'TestingStudent';
-	public $hasOne = array('Testing', 
-			'Student' => array(
-				'className' => 'Student',
-				'foreignKey' => 'ata_number',
-				'dependent' => false)	
-	); 
-	public $belongsTo = array('Rank');
+	public $belongsTo = array('Rank', 'Testing', 'Student');
 	public $virtualFields = array(
 			'name' => 'CONCAT(TestingStudent.first_name, " ", TestingStudent.last_name)',
 			'age' => 'DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), TestingStudent.dob)), "%Y")+0'

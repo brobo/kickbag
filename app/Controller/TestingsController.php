@@ -244,6 +244,10 @@ class TestingsController extends AppController {
 			$this->redirect(array('action'=>'manage'));
 		}
 		$this->set('testing', $testing);
+		$this->set('students', $this->Testing->TestingStudent->find('all', array(
+			'conditions' => array('testing_id' => $testing['Testing']['id']),
+			'order' => array('Rank.zindex DESC', 'TestingStudent.last_name')
+		)));
 		$this->set('ranks', $this->Testing->TestingStudent->Rank->getRanks());
 		define('path_to_webroot', $this->webroot);
 		

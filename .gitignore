@@ -9,6 +9,7 @@ app/[Cc]onfig/database.php
 .settings/*
 .project
 .buildpath
+plugins/*
 app/webroot/img/students/*
 !app/webroot/img/students/nopicture.png
 !empty

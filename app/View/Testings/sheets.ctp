@@ -74,11 +74,13 @@ $html = <<<EOD
 <tbody>
 EOD;
 
-foreach ($testing['TestingStudent'] as $s) {
+foreach ($students as $s_) {
+	$s = $s_['TestingStudent'];
+	$s['abbr'] = $s_['Rank']['abbr'];
 	$html .=
 	'<tr nobr="true">
-		<td colspan="3"> ' . $s['name'] . '</td>
-		<td> ' . $ranks[$s['rank_id']]['abbr'] . '</td>
+		<td colspan="3"> ' . $s['last_name'] . ', ' . $s['first_name'] . '</td>
+		<td> ' . $s['abbr'] . '</td>
 		<td> ' . $s['age'] . '</td>
 		<td></td>
 		<td></td>

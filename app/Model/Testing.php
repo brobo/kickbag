@@ -22,7 +22,7 @@
 class Testing extends AppModel {
 	public $name = 'Testing';
 	//public $hasMany = array('PanelSeat', 'TestingStudent');
-	public $hasMany = array('TestingStudent');
+	public $hasMany = 'TestingStudent';
 	/*public $hasAndBelongsToMany = array(
 		'Judge' => array(
 			'className' => 'Judge',

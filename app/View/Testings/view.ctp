@@ -19,7 +19,7 @@
 <?php echo $this->Html->script(array('jquery/plugins/dataTables', 'testings/view')); ?>
 <?php echo $this->Html->css(array('dataTables')); ?>
 <h2><?php echo $testing['Testing']['description']; ?></h2>
-<h3><?php echo 'Testing schedualed for ' . date('l, F j, Y g:i a', strtotime($testing['Testing']['time'])); ?></h3>
+<h3><?php echo 'Testing scheduled for ' . date('l, F j, Y g:i a', strtotime($testing['Testing']['time'])); ?></h3>
 <table id="students">
 <thead>
 	<th>Name</th>
